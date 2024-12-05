@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyMovieX - Streaming de films</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>MyMovieX</h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Rechercher un film...">
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="popular-films">
+      <h2>Films Populaires</h2>
+      <div class="film-list" id="film-list">
+        <!-- Les films seront ajoutés ici par JavaScript -->
+      </div>
+    </section>
+
+    <!-- Ajouter les boutons de navigation ici -->
+    <section class="navigation-buttons">
+      <h2>Explorez nos films :</h2>
+      <div class="buttons-container">
+        <button onclick="window.location.href='filmsAZ.html'">Tous les films de A à Z</button>
+        <button onclick="window.location.href='dernièresSorties.html'">Dernières Sorties</button>
+        <button onclick="window.location.href='vueCompacte.html'">Films en Vue Compacte</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 MyMovieX. Tous droits réservés.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

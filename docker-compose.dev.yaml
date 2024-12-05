@@ -1,0 +1,22 @@
+services:
+  #  Base de données
+  #  Nom du service
+  mysql:  
+    image: mysql:9
+    ports:
+      - 3306:3306
+    volumes:
+      - ./code/server/mysql:/app
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+# docker compose -f docker-compose.dev.yaml up -d
+
+  server: 
+    image: node:23
+    ports:
+      - 3000:3000
+    volumes:
+      - ./code/server:/app
+    tty: true
