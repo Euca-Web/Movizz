@@ -3,19 +3,19 @@ DROP DATABASE IF EXISTS Blockbusters_Simplon;
 CREATE DATABASE Blockbusters_Simplon;
 
 -- Table Gender
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Gender (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.gender (
     gender_id INT AUTO_INCREMENT PRIMARY KEY,
     gender_name VARCHAR(50)
 );
 
 -- Table Role
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Role (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.role (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50)
 );
 
 -- Table User
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.User (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.User (
 );
 
 -- Table Director
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Director (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.director (
     director_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100),
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Director (
 );
 
 -- Table Actor
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Actor (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.actor (
     actor_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Actor (
 );
 
 -- Table Movie
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Movie (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.movie (
     movie_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     release_year YEAR,
@@ -51,29 +51,29 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Movie (
     teaser VARCHAR(255),
     gender_id INT,
     director_id INT,
-    FOREIGN KEY (gender_id) REFERENCES Blockbusters_Simplon.Gender(gender_id),
-    FOREIGN KEY (director_id) REFERENCES Blockbusters_Simplon.Director(director_id)
+    FOREIGN KEY (gender_id) REFERENCES Blockbusters_Simplon.gender(gender_id),
+    FOREIGN KEY (director_id) REFERENCES Blockbusters_Simplon.director(director_id)
 );
 
 -- Table Favorites
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Favorites (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.favorites (
     movie_id_user_id INT AUTO_INCREMENT PRIMARY KEY,
     movie_id INT,
     user_id INT,
-    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.Movie(movie_id),
-    FOREIGN KEY (user_id) REFERENCES Blockbusters_Simplon.User(user_id)
+    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.movie(movie_id),
+    FOREIGN KEY (user_id) REFERENCES Blockbusters_Simplon.user(user_id)
 );
 
 -- Table Reviews
-CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.Reviews (
+CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
     rate DECIMAL(3, 2),
     comments TEXT,
     date_of_comms DATE,
     user_id INT,
     movie_id INT,
-    FOREIGN KEY (user_id) REFERENCES Blockbusters_Simplon.User(user_id),
-    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.Movie(movie_id)
+    FOREIGN KEY (user_id) REFERENCES Blockbusters_Simplon.user(user_id),
+    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.movie(movie_id)
 );
 
 -- Table movie_director
@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.movie_director (
     movie_director_id INT AUTO_INCREMENT PRIMARY KEY,
     movie_id INT,
     director_id INT,
-    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.Movie(movie_id),
-    FOREIGN KEY (director_id) REFERENCES Blockbusters_Simplon.Director(director_id)
+    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.movie(movie_id),
+    FOREIGN KEY (director_id) REFERENCES Blockbusters_Simplon.director(director_id)
 );
 
 -- Table movie_actor
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.movie_actor (
     movie_id INT,
     actor_id INT,
     is_main_actor BOOLEAN,
-    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.Movie(movie_id),
-    FOREIGN KEY (actor_id) REFERENCES Blockbusters_Simplon.Actor(actor_id)
+    FOREIGN KEY (movie_id) REFERENCES Blockbusters_Simplon.movie(movie_id),
+    FOREIGN KEY (actor_id) REFERENCES Blockbusters_Simplon.actor(actor_id)
 );
 
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.movie_actor (
 
 -- Insertion dans la table Gender
 -- Insertion pour les genres de films
-INSERT INTO Blockbusters_Simplon.Gender (gender_name) VALUES 
+INSERT INTO Blockbusters_Simplon.gender (gender_name) VALUES 
 ('Action'),
 ('Comedy'),
 ('Drama'),
@@ -123,18 +123,18 @@ INSERT INTO Blockbusters_Simplon.Gender (gender_name) VALUES
 ('Sport');
 
 -- Insertion dans la table Role
-INSERT INTO Blockbusters_Simplon.Role (name) VALUES 
+INSERT INTO Blockbusters_Simplon.role (name) VALUES 
 ('Admin'),
 ('User');
 
 -- Insertion dans la table User
-INSERT INTO Blockbusters_Simplon.User (name, email, password) VALUES 
+INSERT INTO Blockbusters_Simplon.user (name, email, password) VALUES 
 ('John Doe', 'john.doe@example.com', 'password123'),
 ('Jane Smith', 'jane.smith@example.com', 'securepassword'),
 ('Alice Johnson', 'alice.j@example.com', 'alicepass');
 
 -- Insertion dans la table Director
-INSERT INTO Blockbusters_Simplon.Director (first_name, last_name, birth_date, nationality) VALUES
+INSERT INTO Blockbusters_Simplon.director (first_name, last_name, birth_date, nationality) VALUES
 ('Luc', 'Besson', '1959-03-18', 'French'),
 ('Christopher', 'Nolan', '1970-07-30', 'British'),
 ('Steven', 'Spielberg', '1946-12-18', 'American'),
@@ -187,7 +187,7 @@ INSERT INTO Blockbusters_Simplon.Director (first_name, last_name, birth_date, na
 ('David', 'Lean', '1908-03-25', 'British');
 
 -- Insertion dans la table Actor
-INSERT INTO Blockbusters_Simplon.Actor (first_name, last_name, birth_date, nationality) VALUES
+INSERT INTO Blockbusters_Simplon.actor (first_name, last_name, birth_date, nationality) VALUES
 ('Jean', 'Dujardin', '1972-06-19', 'French'),
 ('Brad', 'Pitt', '1963-12-18', 'American'),
 ('Emma', 'Watson', '1990-04-15', 'British'),
@@ -240,7 +240,7 @@ INSERT INTO Blockbusters_Simplon.Actor (first_name, last_name, birth_date, natio
 ('Tom', 'Hardy', '1977-09-15', 'British');
 
 -- Insertion dans la table Movie
-INSERT INTO Blockbusters_Simplon.Movie (title, release_year, duration, summary, poster, teaser, director_id, gender_id) VALUES
+INSERT INTO Blockbusters_Simplon.movie (title, release_year, duration, summary, poster, teaser, director_id, gender_id) VALUES
 ('Le Cinquième Élément', 1997, 126, 'A sci-fi adventure where a taxi driver helps save Earth.', 'poster_fifth_element.jpg', 'teaser_fifth_element.mp4', 1, 5),
 ('Dunkirk', 2017, 106, 'The WWII evacuation of Dunkirk told from land, sea, and air perspectives.', 'poster_dunkirk.jpg', 'teaser_dunkirk.mp4', 2, 3),
 ('E.T. the Extra-Terrestrial', 1982, 115, 'A boy befriends an alien stranded on Earth.', 'poster_et.jpg', 'teaser_et.mp4', 3, 2),
@@ -274,7 +274,7 @@ INSERT INTO Blockbusters_Simplon.Movie (title, release_year, duration, summary, 
 
 
 -- Insertion dans la table Favorites
-INSERT INTO Blockbusters_Simplon.Favorites (movie_id, user_id) VALUES 
+INSERT INTO Blockbusters_Simplon.favorites (movie_id, user_id) VALUES 
 (1, 1),
 (2, 1),
 (3, 2),
@@ -288,7 +288,7 @@ INSERT INTO Blockbusters_Simplon.Favorites (movie_id, user_id) VALUES
 
 
 -- Insertion dans la table Reviews
-INSERT INTO Blockbusters_Simplon.Reviews (rate, comments, date_of_comms, user_id, movie_id) VALUES 
+INSERT INTO Blockbusters_Simplon.reviews (rate, comments, date_of_comms, user_id, movie_id) VALUES 
 (4.5, 'Amazing movie!', '2023-01-01', 1, 1),
 (5.0, 'A masterpiece!', '2023-02-15', 2, 2),
 (4.8, 'Highly recommended.', '2023-03-10', 3, 3),

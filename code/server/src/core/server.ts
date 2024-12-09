@@ -1,7 +1,12 @@
 import http from "node:http";
 import express, { type Router, type Express, type Request, type Response } from "express";
 import HomePageRouter from "../router/homepage_routeur.js";
+import genderRouter from "../router/gender_routeur.js";
 import NotFoundRouter from "../router/not_found_router.js";
+import movieRouter from "../router/movie_routeur.js";
+import directorRouter from "../router/director_routeur.js";
+
+
 class Server {
 // instancier une application Express
     private app: Express = express();
@@ -17,6 +22,9 @@ constructor() {
     private getRoutersList = (): void => {
 // création de la route d'accueil en GET
         this.router.use('/', new HomePageRouter().getRoutes());
+        this.router.use('/gender', new genderRouter().getRoutes());
+        this.router.use('/movie', new movieRouter().getRoutes());
+        this.router.use('/director', new directorRouter().getRoutes());
 
 
     // Routeur des routes inexistantes doit être OBLIGATOIREMENT en dernière position

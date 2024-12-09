@@ -1,6 +1,6 @@
-type Gender = {
+type gender = {
     gender_id: number;
     gender_name: string;
 }
 
-export default Gender;
+export default gender;

@@ -8,7 +8,7 @@ class HomePageController {
 
 		res.status(200).json({
 			status: 200,
-			message: "Welcome to Blockbusters API",
+			message: "Welcome to Movizz API",
 		});
 	};
 }
