@@ -1,6 +1,6 @@
 {
-    "name": "Movizz - Server", 
-    "service" : "server", 
+    "name": "Movizz - Client", 
+    "service" : "client", 
     "dockerComposeFile": "../../docker-compose.dev.yaml",
     "workspaceFolder": "/app",
     "customizations": {
@@ -9,7 +9,7 @@
                 "christian-kohler.npm-intellisense", 
                 "christian-kohler.path-intellisense",
                 "biomejs.biome",
-                "VASubasRaj.flashpost"
+                "dsznajder.es7-react-js-snippets"
             ],
             "settings": {
                     "[typescript]": {

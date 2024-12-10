@@ -1,0 +1,9 @@
+/*
+    le suffixe module permet d'isoler ls styles d'un composant
+    utiliser en priorité des classes CSS
+*/
+
+.site-header{
+    background-color: rgb(54, 53, 53);
+    padding: 1rem;
+}
