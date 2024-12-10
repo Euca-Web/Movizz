@@ -11,13 +11,13 @@ CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.gender (
 -- Table Role
 CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.role (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50)
+    role_name VARCHAR(50)
 );
 
 -- Table User
 CREATE TABLE IF NOT EXISTS Blockbusters_Simplon.user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL
 );

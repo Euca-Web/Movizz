@@ -5,6 +5,9 @@ import genderRouter from "../router/gender_routeur.js";
 import NotFoundRouter from "../router/not_found_router.js";
 import movieRouter from "../router/movie_routeur.js";
 import directorRouter from "../router/director_routeur.js";
+import actorRouter from "../router/actor_routeur.js";
+import roleRouter from "../router/role_routeur.js";
+import userRouter from "../router/user_routeur.js";
 
 
 class Server {
@@ -25,6 +28,9 @@ constructor() {
         this.router.use('/gender', new genderRouter().getRoutes());
         this.router.use('/movie', new movieRouter().getRoutes());
         this.router.use('/director', new directorRouter().getRoutes());
+        this.router.use('/actor', new actorRouter().getRoutes());
+        this.router.use('/role', new roleRouter().getRoutes());
+        this.router.use('/user', new userRouter().getRoutes());
 
 
     // Routeur des routes inexistantes doit être OBLIGATOIREMENT en dernière position
