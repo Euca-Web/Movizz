@@ -1,8 +1,5 @@
-import Header from "../component/common/Header";
-
-
-const HomePage = ( ) => {
-    return <Header />;
-    
-}
-export default HomePage
+const HomePage = () => {
+	// Balise fragment = Balise anonyme <></>
+	return <h1>Home</h1>;
+};
+export default HomePage;
