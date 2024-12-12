@@ -3,6 +3,7 @@
 }
 .site-nav{
     display: block;
+    text-align: center;
 }
 
 @media screen and (max-width: 50rem){
@@ -10,7 +11,7 @@
         display: block;
     }
     .site-nav{
-    display: none;
+        display: none;
     }
     .site-nav-visible{
         display: block;
