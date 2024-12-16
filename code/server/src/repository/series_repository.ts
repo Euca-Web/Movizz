@@ -1,11 +1,11 @@
-import type user from "../model/user.js";
+import type gender from "../model/gender.js";
 import MySqlService from "../service/mysql_service.js";
 
-class userRepository {
-	private table = "user";
+class genderRepository {
+	private table = "gender";
 // async = asynchronne = exécute de tâches en parallèle/async crée une promesse
 // la fonction renvoie un objet unknown lorsqu'une erreur est renvoyée 
-	public selectAll = async (): Promise<user[] | unknown> => {
+	public selectAll = async (): Promise<gender[] | unknown> => {
 		const connection = await new MySqlService().connect();
 		// console.log(connection);
 
@@ -26,7 +26,7 @@ class userRepository {
 
 	// récupérer un enregistrement par sa clé primaire
 	// Partial permet de définir des propriétés optionnelles 
-	public selectOne = async (data: Partial<user>): Promise<user[] | unknown> => {
+	public selectOne = async (data: Partial<gender>): Promise<gender[] | unknown> => {
 		const connection = await new MySqlService().connect();
 		// console.log(connection);
 
@@ -36,7 +36,7 @@ class userRepository {
             FROM  
                 ${process.env.MYSQL_DATABASE}.${this.table}
 			WHERE
-				${this.table}_id = :user_id
+				${this.table}_id = :gender_id
         `;
 		// exécuter la commande
 		// try/catch : permet d'exécuter une instruction, si l'instruction échoue, une erreur est récupérée 
@@ -49,7 +49,7 @@ class userRepository {
 
 			// récupérer le premier resultat 
 			// shift permet de récupérer le premier indice d'un array
-			const result = (results as user[]).shift();
+			const result = (results as gender[]).shift();
 			// si la requête a réussie 
 			return results;
 		} catch (error) {
@@ -58,4 +58,4 @@ class userRepository {
 	};
 }
 
-export default userRepository;
+export default genderRepository;

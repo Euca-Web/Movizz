@@ -1,4 +1,4 @@
-type movie = {
+type movies = {
     movie_id: number;
     title:string;
     release_year: Date;
@@ -8,4 +8,4 @@ type movie = {
     teaser:string;
 }
 
-export default movie;
+export default movies;

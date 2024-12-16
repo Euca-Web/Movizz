@@ -1,4 +1,4 @@
-type user = {
+type users = {
     user_id: number;
     first_name: string;
     last_name: string; 
@@ -6,4 +6,4 @@ type user = {
     nationality: string
 }
 
-export default user;
+export default users;

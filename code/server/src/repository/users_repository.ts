@@ -1,11 +1,11 @@
-import type movie from "../model/movie.js";
+import type users from "../model/users.js";
 import MySqlService from "../service/mysql_service.js";
 
-class movieRepository {
-	private table = "movie";
+class usersRepository {
+	private table = "user";
 // async = asynchronne = exécute de tâches en parallèle/async crée une promesse
 // la fonction renvoie un objet unknown lorsqu'une erreur est renvoyée 
-	public selectAll = async (): Promise<movie[] | unknown> => {
+	public selectAll = async (): Promise<users[] | unknown> => {
 		const connection = await new MySqlService().connect();
 		// console.log(connection);
 
@@ -26,7 +26,7 @@ class movieRepository {
 
 	// récupérer un enregistrement par sa clé primaire
 	// Partial permet de définir des propriétés optionnelles 
-	public selectOne = async (data: Partial<movie>): Promise<movie[] | unknown> => {
+	public selectOne = async (data: Partial<users>): Promise<users[] | unknown> => {
 		const connection = await new MySqlService().connect();
 		// console.log(connection);
 
@@ -36,7 +36,7 @@ class movieRepository {
             FROM  
                 ${process.env.MYSQL_DATABASE}.${this.table}
 			WHERE
-				${this.table}_id = :movie_id
+				${this.table}_id = :user_id
         `;
 		// exécuter la commande
 		// try/catch : permet d'exécuter une instruction, si l'instruction échoue, une erreur est récupérée 
@@ -49,13 +49,13 @@ class movieRepository {
 
 			// récupérer le premier resultat 
 			// shift permet de récupérer le premier indice d'un array
-			const result = (results as movie[]).shift();
+			const result = (results as users[]).shift();
 			// si la requête a réussie 
-			return result;
+			return results;
 		} catch (error) {
 			return error;
 		}
 	};
 }
 
-export default movieRepository;
+export default usersRepository;
