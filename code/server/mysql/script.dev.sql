@@ -15,6 +15,7 @@ CREATE TABLE Movizz.users (
 -- Table : Films
 CREATE TABLE Movizz.movies (
     movie_id INT AUTO_INCREMENT PRIMARY KEY,
+    gender_id INT AUTO_INCREMENT FOREIGN Key,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     release_date DATE,

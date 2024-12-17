@@ -1,7 +1,10 @@
-type series_gender = {
-    gender_id: number;
-    gender_name: string;
-    
+type comments = {
+    comment_id: number;
+    user_id: number;
+    content: string;
+    movie_id: number;
+    series_id: number;
+    created_at: Date;
 }
 
-export default series_gender;
+export default comments;

@@ -5,7 +5,7 @@ class MySqlService {
 
 	public connect = async () => {
 		if (!MySqlService.connection) {
-			return await mysql
+			MySqlService.connection = await mysql
 				.createPool({
 					host: process.env.MYSQL_HOST,
 					user: process.env.MYSQL_USER,

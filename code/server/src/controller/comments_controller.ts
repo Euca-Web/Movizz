@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
-import usersRepository from "../repository/users_repository.js";
+import commentsRepository from "../repository/comments_repository.js";
 
-class usersController {
+class commentsController {
 	public index = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
-		const result = await new usersRepository().selectAll();
+		const result = await new commentsRepository().selectAll();
 		// Si la requête SQL renvoie une erreur
 		if(result instanceof Error){
 			res.status(400).json({
@@ -26,7 +26,7 @@ class usersController {
 	public one = async (req: Request, res: Response) => {
 		// récuperer tous les enregistrements
 		// req.params permet de récupérer les variables de route
-		const result = await new usersRepository().selectOne(req.params);
+		const result = await new commentsRepository().selectOne(req.params);
 		// Si la requête SQL renvoie une erreur
 		if(result instanceof Error){
 			res.status(400).json({
@@ -46,4 +46,4 @@ class usersController {
 		});
 	};
 }
-export default usersController;
+export default commentsController;

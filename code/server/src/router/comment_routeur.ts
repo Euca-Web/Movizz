@@ -1,16 +1,16 @@
 import express, { type Response, type Request } from "express";
-import genderController from "../controller/gender_controller.js";
+import commentsController from "../controller/comments_controller.js";
 
-class genderRouter {
+class commentsRouter {
 	private routeur = express.Router();
 
 	public getRoutes = () => {
-		this.routeur.get("/", new genderController().index);
+		this.routeur.get("/", new commentsController().index);
 		// crée une variable de route en la préfixant d'un :
-		this.routeur.get("/:gender_id", new genderController().one)
+		this.routeur.get("/:comment_id", new commentsController().one)
 		
 		return this.routeur;
 	};
 }
 
-export default genderRouter;
+export default commentsRouter;
