@@ -28,3 +28,16 @@ services:
     volumes:
       - ./code/client:/app
     tty: true
+  #Mongo
+  mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    volumes: 
+      - ./code/server/mongodb:/app
+      - ./mongodb-data:/data/db
+    environnement:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+    
