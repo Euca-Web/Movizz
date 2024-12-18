@@ -1,7 +1,7 @@
 import express, { type Response, type Request } from "express";
 import genderController from "../controller/gender_controller.js";
 
-class genderRouter {
+class seriesRouter {
 	private routeur = express.Router();
 
 	public getRoutes = () => {
@@ -13,4 +13,4 @@ class genderRouter {
 	};
 }
 
-export default genderRouter;
+export default seriesRouter;
