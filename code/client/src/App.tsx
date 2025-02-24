@@ -1,17 +1,15 @@
-/*
-  Composant react :
-      capitaliser le nom du composant
-      fonction JS/TS qui renvoie du HTML
-*/
-
-import './assets/css/reset.css';
-import './assets/css/style.css';
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider } from 'react-router-dom';
+import { MoviesProvider } from './context/MoviesContext';
 import router from './service/router';
-
-
+import './styles/variables.css';
+import './styles/global.css';
 
 const App = () => {
-  return <RouterProvider router={ router }/>;
-}
-export default App
+  return (
+    <MoviesProvider>
+      <RouterProvider router={router} />
+    </MoviesProvider>
+  );
+};
+
+export default App;
