@@ -1,43 +1,70 @@
 services:
   #  Base de données
-  #  Nom du service
   mysql:  
     image: mysql:9
     ports:
       - 3306:3306
     volumes:
-      - ./code/server/mysql:/app
+      - ./code/server/mysql:/docker-entrypoint-initdb.d
       - ./mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Movizz
     restart: always
-# docker compose -f docker-compose.dev.yaml up -d
-  #Serveur
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Serveur API
   server: 
     image: node:23
     ports:
       - 3000:3000
     volumes:
       - ./code/server:/app
-    tty: true
-  #Client  
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    environment:
+      - NODE_ENV=development
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=Movizz
+      - PORT=3000
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # Client React
   client: 
     image: node:23
     ports:
       - 5173:5173
     volumes:
       - ./code/client:/app
-    tty: true
-  #Mongo
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - server
+
+  # Base de données MongoDB
   mongodb:
     image: mongo:8
     ports:
       - 27017:27017
     volumes: 
-      - ./code/server/mongodb:/app
       - ./mongodb-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     restart: always
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "'db.runCommand({ ping: 1 })'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     

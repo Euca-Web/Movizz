@@ -5,7 +5,7 @@ import './Logo.css';
 const Logo: React.FC = () => {
   return (
     <Link to="/" className="logo">
-      <img src="/logo.png" alt="Movizz" className="logo-image" />
+      <img src="img/Group%2017.svg" alt="Movizz" className="logo-image" />
     </Link>
   );
 };
