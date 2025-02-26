@@ -1,8 +1,55 @@
 .navigation {
+  position: relative;
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
   padding: 1rem 2rem;
   background-color: #0a0c17;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-logo {
+  position: absolute;
+  left: 2rem;
+  height: 35px;
+  width: auto;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-logo {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .nav-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .nav-button {

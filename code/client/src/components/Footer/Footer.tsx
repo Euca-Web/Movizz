@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer: React.FC = () => {
@@ -12,14 +13,14 @@ const Footer: React.FC = () => {
         </p>
         
         <div className="footer-links">
-          <a href="/conditions">Conditions d'utilisation</a>
-          <a href="/mentions-legales">Mentions Légales</a>
-          <a href="/contact">Nous contacter</a>
+          <Link to="/conditions-utilisation">Conditions d'utilisation</Link>
+          <Link to="/mentions-legales">Mentions Légales</Link>
+          <Link to="/contact">Nous contacter</Link>
         </div>
 
         <div className="footer-logo">
-          <span className="logo-text">M<span className="logo-icon">⏵</span>VIZZ</span>
-          <p className="copyright">Powered by React</p>
+          <img src="/img/Group%2017.svg" alt="Movizz" className="footer-logo-image" />
+          <p className="copyright">© 2024 Movizz. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

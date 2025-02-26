@@ -23,6 +23,31 @@
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-links {
+    gap: 1rem;
+  }
+
+  .welcome-text {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .footer-links a {
@@ -42,13 +67,10 @@
   gap: 0.5rem;
 }
 
-.footer-logo .logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.footer-logo .logo-icon {
-  color: #5d3eff;
+.footer-logo-image {
+  height: 35px;
+  width: auto;
+  margin-bottom: 10px;
 }
 
 .copyright {

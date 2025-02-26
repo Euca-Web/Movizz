@@ -6,28 +6,21 @@ interface MovieCardProps {
     id: number;
     title: string;
     posterUrl: string;
-    releaseDate: string;
-    duration: number;
-    description: string;
-    onWatch?: (id: number) => void;
-    onAddToFavorites?: (id: number) => void;
+    rating?: number;
+    type: 'movie' | 'series';
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
     id,
     title,
     posterUrl,
-    releaseDate,
-    duration,
-    description,
-    onWatch,
-    onAddToFavorites
+    rating,
+    type
 }) => {
-    const formattedDate = formatDate(releaseDate);
-    const formattedDuration = formatDuration(duration);
-
     return (
         <div className="movie-card">
+            <div className="movie-type">{type}</div>
+            {rating && <div className="movie-rating">{rating.toFixed(1)}</div>}
             <img 
                 src={posterUrl} 
                 alt={`Affiche du film ${title}`} 

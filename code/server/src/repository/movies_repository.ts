@@ -54,29 +54,37 @@ class moviesRepository {
 		data: Partial<movies>,
 	): Promise<movies[] | unknown> => {
 		const connection = await new MySqlService().connect();
-		// console.log(connection);
 
 		const sql = `
             SELECT
-                ${this.table}.*
+                ${this.table}.*,
+				GROUP_CONCAT(gender.gender_id) AS gender_ids
             FROM  
                 ${process.env.MYSQL_DATABASE}.${this.table}
+			JOIN
+				${process.env.MYSQL_DATABASE}.movie_gender
+			ON
+				movie_gender.movie_id = ${this.table}.movie_id
+			JOIN
+				${process.env.MYSQL_DATABASE}.gender
+			ON	
+				movie_gender.gender_id = gender.gender_id
 			WHERE
-				${this.table}_id = :movie_id
+				${this.table}.movie_id = ?
+			GROUP BY
+				${this.table}.movie_id
         `;
-		// exécuter la commande
-		// try/catch : permet d'exécuter une instruction, si l'instruction échoue, une erreur est récupérée
-		try {
-			// récupérer les résultats de la requête
-			// result représente le prmeier indice du array renvoyé
-			// requêtes prépareées avec des variables de requêtes SQL permettent d'éviter les injections SQL
-			// data permet de définir une valeur aux variables de requêtes SQL
-			const [results] = await connection.execute(sql, data);
 
-			// récupérer le premier resultat
-			// shift permet de récupérer le premier indice d'un array
-			const result = (results as movies[]).shift();
-			// si la requête a réussie
+		try {
+			const [results] = await connection.execute(sql, [data.movie_id]);
+			const result = (results as movies[])[0];
+
+			if (result) {
+				result.genders = (await new genderRepository().selectInList(
+					result.gender_ids,
+				)) as gender[];
+			}
+
 			return result;
 		} catch (error) {
 			return error;
