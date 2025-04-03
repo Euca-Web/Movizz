@@ -1,0 +1,70 @@
+/*
+styles communs à toutes les pages 
+*/
+*{
+    box-sizing: border-box;
+}
+body{
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    color: azure;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+}
+html, body {
+    height: 100%; /* Assure que le body occupe toute la hauteur de la fenêtre */
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: azure;
+}
+h1{
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: azure;
+}
+footer {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: azure;
+    padding: 1rem;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    margin-top: auto; /* Pousse le footer vers le bas si nécessaire */
+}
+header{
+    background-color: rgb(0, 0, 0);
+    color: azure;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+a:hover{
+    color: rgb(0, 0, 0);
+}
+img{width: 100%;}
+
+title{
+    text-align: center;
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: azure;    
+}
+td{
+    text-align: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
