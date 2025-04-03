@@ -1,5 +1,5 @@
 import type React from 'react';
-import '../../assets/css/Legal.css'; // Assurez-vous d'importer le fichier CSS approprié
+import './Legal.css'; // Assurez-vous d'importer le fichier CSS approprié
 
 const LegalNotice: React.FC = () => {
   return (

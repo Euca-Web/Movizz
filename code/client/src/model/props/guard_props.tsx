@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 type GuardProps = {
     children: React.JSX.Element | React.JSX.Element[];

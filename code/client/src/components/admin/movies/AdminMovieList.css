@@ -1,0 +1,94 @@
+table {
+    width: calc(100% - 40px); /* Réduit la largeur pour inclure la marge */
+    margin: 20px; /* Ajoute une marge de 20px sur tous les côtés */
+    margin-left: -50px;
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    vertical-align: middle; /* Centre le contenu verticalement */
+    text-align: left; /* Aligne le texte à gauche */
+    height: 150px; /* Fixe une hauteur pour les cellules */
+    overflow: hidden; /* Empêche le débordement */
+}
+
+th {
+    background-color: var(--background-light);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-light);
+}
+
+tr:hover {
+    background-color: var(--card-hover);
+}
+
+td img {
+    width: 100px;
+    height: auto;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    max-height: 100%; /* L'image ne dépasse pas la hauteur de la cellule */
+    max-width: 100px; /* Limite la largeur de l'image */
+    display: block; /* Évite les problèmes d'alignement */
+    margin: 0 auto; /* Centre l'image horizontalement */
+}
+
+td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+td ul li {
+    margin: 5px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin: 0 5px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--color-purple);
+}
+
+/* Par défaut, toutes les colonnes sont affichées */
+
+/* Pour les écrans de 680px ou moins */
+@media (max-width: 680px) {
+    table {
+        margin-left: 0px;
+    }
+    td:not(:nth-child(1)):not(:nth-child(5)):not(:nth-child(7)),
+    th:not(:nth-child(1)):not(:nth-child(5)):not(:nth-child(7)) {
+        display: none; /* Cache toutes les colonnes sauf Titre (1), Colonne 5 et Colonne 7 */
+    }
+}
+
+/* Pour les écrans de 410px ou moins */
+@media (max-width: 410px) {
+    table {
+        margin-left: 0px;
+    }
+    td:not(:nth-child(1)):not(:nth-child(7)),
+    th:not(:nth-child(1)):not(:nth-child(7)) {
+        display: none; /* Cache toutes les colonnes sauf Titre (1) et Colonne 7 */
+    }
+}

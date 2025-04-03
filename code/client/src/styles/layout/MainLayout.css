@@ -1,0 +1,62 @@
+/* Reset de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    overflow-x: hidden;
+    background-color: var(--background-color);
+  }
+  
+  /* Layout principal */
+  .main-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  .main-layout > header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  /* Main content */
+  .main-content {
+    flex: 1;
+    margin-top: 0;
+    width: 100%;
+  }
+  
+  /* Container pour le contenu centré */
+  .content-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Sections pleine largeur */
+  .full-width {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Footer */
+  .main-layout > footer {
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .content-container {
+      padding: 0 2rem;
+    }
+  }
+  

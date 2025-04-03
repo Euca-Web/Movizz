@@ -1,14 +1,12 @@
-import AdminMovieForm from "../../component/admin/movies/AdminMovieForm"
+import AdminMovieForm from "../../components/admin/movies/AdminMovieForm";
 
 const AdminMovieFormPage = () => {
-  return (
-    <div>
-        <h1>
-        Movie Form
-        </h1>
-        <AdminMovieForm/>
-    </div>
-  )
-}
+	return (
+		<div>
+			<h1>Ajouter un film</h1>
+			<AdminMovieForm />
+		</div>
+	);
+};
 
-export default AdminMovieFormPage
+export default AdminMovieFormPage;

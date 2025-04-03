@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "../component/common/Header";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 //  Les mises en pages permettent de définir les composants communs à plusieurs mises en page
 const BaseLayout = () => {
@@ -8,6 +9,7 @@ const BaseLayout = () => {
 			<Header />
 			{/*Outlet permet de définir l'emplacement du contenu particulier d'une page */}
 			<Outlet />
+			<Footer />
 		</>
 	);
 };

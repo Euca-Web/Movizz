@@ -1,21 +1,19 @@
-import type React from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from '../component/common/Footer';
-import BackButton from '../component/common/BackButton';
-import '../assets/css/SimpleLayout.css';
+import type React from "react";
+import { Outlet } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
+import "../styles/layout/SimpleLayout.css"; // Adjust the path as necessary
 
 const SimpleLayout: React.FC = () => {
-  return (
-    <div className="simple-layout">
-      <BackButton />
-      <main className="main-content">
-        <div className="content-container">
-          <Outlet />
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="simple-layout">
+			<BackButton />
+			<main className="main-content">
+				<div className="content-container">
+					<Outlet />
+				</div>
+			</main>
+		</div>
+	);
 };
 
 export default SimpleLayout;

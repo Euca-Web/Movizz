@@ -1,15 +1,17 @@
 import type React from "react";
-import Hero from "../../component/common/Hero";
-import PopularMovies from "../../component/common/PopularMovies";
-import "../../assets/Home.css";
+// import Hero from "../../components/Hero/Hero";
+// import PopularMovies from "../../components/PopularMovies/PopularMovies";
+import "./Home.css";
+// import MovieList from "../../components/MovieList/MovieList";
 
 const Home: React.FC = () => {
 	return (
 		<>
-			<Hero />
+			{/* <Hero /> */}
+			{/* <MovieList /> */}
 			<div className="content-container">
-				<PopularMovies />
 			</div>
+			{/* <PopularMovies /> */}
 		</>
 	);
 };

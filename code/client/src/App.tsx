@@ -4,8 +4,10 @@
       fonction JS/TS qui renvoie du HTML
 */
 
-import './assets/css/reset.css';
-import './assets/css/style.css';
+import './reset.css';
+import './styles/variables.css';
+import './styles/global.css';
+import './style.css';
 import { UserProvider } from './provider/UserProvider';
 import { RouterProvider } from "react-router-dom";
 import router from './service/router';

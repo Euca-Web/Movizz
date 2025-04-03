@@ -1,0 +1,182 @@
+/* Style général du formulaire */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+/* Style des paragraphes contenant les champs */
+form p {
+    margin-bottom: 20px;
+}
+
+/* Style des labels */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Style des champs de saisie */
+form input[type="text"],
+form input[type="date"],
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[type="file"]:focus {
+    border-color: var(--color-blue);
+    outline: none;
+}
+
+/* Style des messages d'erreur */
+form span {
+    color: var(--color-purple);
+    font-size: 0.875rem;
+}
+
+/* Conteneur des genres */
+form #genres-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 genres par ligne au lieu de 5 */
+    gap: 15px; /* Espacement entre les cases */
+    margin-top: 10px;
+}
+
+/* Style des genres */
+form #genres-container div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-light);
+    padding: 30px; /* Augmente l'espace intérieur pour agrandir les cases */
+    border-radius: 10px; /* Coins légèrement arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    font-weight: bold;
+    color: var(--text-color);
+    border: none; /* Supprime la bordure */
+    font-size: 1rem; /* Taille de texte légèrement augmentée */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: auto; /* Permet à la hauteur de s'adapter au contenu */
+    min-height: 50px; /* Augmente la hauteur minimale */
+    min-width: 120px; /* Ajoute une largeur minimale pour agrandir les cases */
+}
+
+/* Effet au survol */
+form #genres-container div:hover {
+    background-color: var(--card-hover);
+    transform: scale(1.05); /* Légère mise en avant au survol */
+}
+
+/* Cacher les cases à cocher */
+form #genres-container input[type="checkbox"] {
+    display: none;
+}
+
+/* Style des genres sélectionnés */
+form #genres-container input[type="checkbox"]:checked + label {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border-color: var(--color-blue);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Style des labels des genres */
+form #genres-container label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px; /* Coins arrondis pour correspondre à la case */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+}
+
+/* Ajustement pour éviter les débordements */
+form #genres-container div label {
+    width: 100%;
+    height: 100%;
+}
+
+/* Style du bouton */
+form button {
+    padding: 10px 20px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: 2px solid var(--border-color); /* Ajoute une bordure */
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+form button:hover {
+    background-color: var(--color-purple);
+    transform: scale(1.05); /* Légère mise en avant au survol */
+}
+
+/* Styles responsives pour les écrans de 680px */
+@media (max-width: 680px) {
+    /* Afficher les cases des genres sur trois colonnes */
+    form #genres-container {
+        grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+        gap: 15px; /* Espacement entre les cases */
+    }
+
+    /* Ajuster les cases des genres pour qu'elles s'adaptent */
+    form #genres-container div {
+        min-width: 120px; /* Les cases s'adaptent à la grille */
+        padding: 25px; /* Ajuster l'espace intérieur */
+    }
+}
+
+/* Styles responsives pour les petits écrans */
+@media (max-width: 410px) {
+    /* Supprimer le bouton retour */
+    form button#back-button {
+        display: none;
+    }
+
+    /* Afficher les cases des genres sur une seule colonne */
+    form #genres-container {
+        grid-template-columns: 1fr; /* Une seule colonne */
+        gap: 10px; /* Réduire l'espacement entre les cases */
+    }
+
+    /* Ajuster les cases des genres pour qu'elles s'adaptent à la largeur */
+    form #genres-container div {
+        min-width: 120px; /* Les cases prennent toute la largeur */
+        padding: 20px; /* Ajuster l'espace intérieur */
+    }
+}
