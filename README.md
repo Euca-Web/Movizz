@@ -1,44 +1,25 @@
 # Movizz
 
+![Movizz Logo](https://raw.githubusercontent.com/Euca-Web/Movizz/f11d9d3a109bad3106e5282a0e4b44300309f5c3/code/client/src/assets/svg/logo.svg)
+
 ## 📋 Présentation du projet
 
-Movizz est une bibliothèque de films inspirée de Pathé Home et MyMovix. Cette plateforme permet aux utilisateurs de découvrir, noter et commenter des films.
+Movizz est une bibliothèque de films inspirée de Pathé Home et MyMovix. Cette plateforme permet aux utilisateurs de découvrir des films et d'explorer leurs détails.
 
 Le site sera initialement disponible en français, avec une version anglophone prévue dans les 6 mois à venir.
 
 ### Fonctionnalités principales
 
-- **Utilisateurs** : Consultation de films, ajout de commentaires et de notes
-- **Administrateurs** : Gestion du catalogue de films, modération des commentaires, supervision de l'UX/UI
+- **Utilisateurs** :
+  - Consultation de films via une interface intuitive.
+  - Recherche avancée par titre, genre, année de sortie, ou acteur.
 
-### Analyse concurrentielle
+- **Administrateurs** :
+  - Gestion complète du catalogue de films (ajout, modification, suppression).
+  - Modération des commentaires pour garantir un contenu approprié.
+  - Supervision de l'expérience utilisateur (UX/UI) via des outils d'analyse intégrés.
 
-#### PathéHome
-**Avantages** :
-- Large choix de films récents et variés
-- Interface fluide, catégories et genres bien organisés
-
-**Inconvénients** :
-- Nécessite un abonnement pour accéder à certaines fonctionnalités
-- Offre limitée pour les films plus anciens
-
-#### Allociné
-**Avantages** :
-- Informations détaillées sur les films, acteurs et critiques
-- Très bonne gestion des avis utilisateurs et des classements
-
-**Inconvénients** :
-- Publicité envahissante sur certaines pages
-- Le design peut sembler saturé pour certains utilisateurs
-
-#### MyMovix
-**Avantages** :
-- Large bibliothèque de films, y compris des classiques
-- Accès à plusieurs genres et nouveautés
-
-**Inconvénients** :
-- Interface parfois difficile à naviguer
-- Risque de contenus non officiels, ce qui peut être préoccupant
+---
 
 ## 🚀 Installation et configuration
 
@@ -84,6 +65,8 @@ Le site sera initialement disponible en français, avec une version anglophone p
    npm run dev
    ```
 
+---
+
 ## 🏗️ Architecture du projet
 
 ### Structure des dossiers
@@ -114,39 +97,40 @@ Movizz/
 └── mysql-data/            # Données persistantes MySQL
 ```
 
+---
+
 ### Backend (Serveur)
 
 Le backend est construit avec **Node.js**, **Express**, et **TypeScript**. Il suit une architecture MVC (Modèle-Vue-Contrôleur) pour une séparation claire des responsabilités.
 
 #### Fonctionnalités principales
 
-- Gestion des utilisateurs (authentification, autorisation)
-- Gestion des films (CRUD : création, lecture, mise à jour, suppression)
-- Gestion des commentaires et des notes
-- Intégration avec MySQL pour les données structurées
-- Intégration avec MongoDB pour les données non structurées
+- **Gestion des utilisateurs** :
+  - Authentification via JWT (JSON Web Tokens).
+  - Autorisation basée sur les rôles (utilisateur, administrateur).
+  - Gestion des mots de passe avec chiffrement (bcrypt).
+
+- **Gestion des films** :
+  - CRUD complet (création, lecture, mise à jour, suppression).
+  - Recherche avancée par titre, genre, année de sortie, ou acteur.
+  - Gestion des images et des bandes-annonces via un service de stockage (ex. AWS S3).
+
+- **Base de données** :
+  - **MySQL** : Stockage des données structurées (utilisateurs, films).
+  - **MongoDB** : Stockage des données non structurées (logs, historiques).
 
 #### Points clés
 
-- **Sécurité** : Utilisation de middlewares pour la validation des données et la gestion des erreurs.
-- **Scalabilité** : Architecture modulaire permettant une extension facile des fonctionnalités.
-- **Performances** : Optimisation des requêtes SQL et utilisation de caches pour les données fréquemment consultées.
+- **Sécurité** :
+  - Validation des données avec `Joi` ou `Zod`.
+  - Protection contre les attaques XSS et CSRF.
+  - Gestion des erreurs centralisée.
 
-#### Scripts disponibles
+- **Performances** :
+  - Mise en cache des requêtes fréquentes avec Redis.
+  - Optimisation des requêtes SQL avec des index.
 
-```bash
-# Compiler le TypeScript
-npm run compile
-
-# Compiler en mode watch
-npm run build
-
-# Démarrer le serveur de développement
-npm run dev
-
-# Démarrer le serveur en production
-npm run start
-```
+---
 
 ### Frontend (Client)
 
@@ -154,40 +138,30 @@ Le frontend est construit avec **React**, **TypeScript**, et **Vite** pour une e
 
 #### Fonctionnalités principales
 
-- Interface utilisateur intuitive pour la navigation et la recherche de films
-- Système de notation et de commentaires
-- Gestion des utilisateurs (connexion, inscription)
-- Interface d'administration pour la gestion des films et des commentaires
+- **Interface utilisateur** :
+  - Navigation fluide avec React Router.
+  - Design responsive pour une compatibilité mobile et desktop.
+  - Thème clair et sombre.
+
+- **Gestion des utilisateurs** :
+  - Connexion et inscription avec validation des formulaires.
+  - Gestion des profils utilisateurs (modification des informations personnelles).
+
+- **Interface d'administration** :
+  - Tableau de bord pour gérer les films.
+  - Statistiques sur les utilisateurs actifs et les films les plus populaires.
 
 #### Points clés
 
-- **Réactivité** : Utilisation de React Router pour une navigation fluide.
-- **Modularité** : Composants réutilisables pour une maintenance simplifiée.
-- **Performances** : Chargement rapide grâce à Vite et optimisation des assets.
+- **Performances** :
+  - Chargement rapide grâce à Vite.
+  - Optimisation des assets (images, CSS, JS).
 
-#### Scripts disponibles
+- **Modularité** :
+  - Composants réutilisables pour une maintenance simplifiée.
+  - Utilisation de hooks personnalisés pour la gestion des états.
 
-```bash
-# Démarrer le serveur de développement
-npm run dev
-
-# Compiler pour la production
-npm run build
-
-# Linter
-npm run lint
-
-# Prévisualiser la version de production
-npm run preview
-```
-
-### Flux de données dans l'application
-
-1. **Requête HTTP** → Le client envoie une requête à un endpoint de l'API.
-2. **Router** → Reçoit la requête et la dirige vers la méthode appropriée du contrôleur.
-3. **Controller** → Traite la requête et appelle la méthode appropriée du repository.
-4. **Repository** → Exécute les opérations de base de données et renvoie les résultats.
-5. **Controller** → Formate les résultats et renvoie la réponse HTTP au client.
+---
 
 ## 🔧 Utilisation
 
@@ -210,20 +184,27 @@ docker compose -f docker-compose.dev.yaml down
 
 ### Endpoints API principaux
 
-- **GET /movies** : Liste tous les films
-- **GET /movies/:id** : Récupère les détails d'un film spécifique
-- **POST /movies** : Ajoute un nouveau film
-- **PUT /movies** : Met à jour un film existant
-- **DELETE /movies/:id** : Supprime un film
-- **GET /series** : Liste toutes les séries
-- **GET /series/:id** : Récupère les détails d'une série spécifique
+- **GET /movies** : Liste tous les films.
+- **GET /movies/:id** : Récupère les détails d'un film spécifique.
+- **POST /movies** : Ajoute un nouveau film.
+- **PUT /movies/:id** : Met à jour un film existant.
+- **DELETE /movies/:id** : Supprime un film.
+
+---
 
 ## 📝 Contribution
 
 Pour contribuer au projet, veuillez suivre les étapes suivantes :
 
-1. Créer une branche pour votre fonctionnalité (`git checkout -b feature/nom-de-la-fonctionnalité`)
-2. Commiter vos changements (`git commit -m 'Ajout de fonctionnalité X'`)
-3. Pousser la branche (`git push origin feature/nom-de-la-fonctionnalité`)
-4. Ouvrir une Pull Request
+1. Créer une branche pour votre fonctionnalité (`git checkout -b feature/nom-de-la-fonctionnalité`).
+2. Commiter vos changements (`git commit -m 'Ajout de fonctionnalité X'`).
+3. Pousser la branche (`git push origin feature/nom-de-la-fonctionnalité`).
+4. Ouvrir une Pull Request.
+
+---
+
+## 📚 Documentation supplémentaire
+
+- **API Swagger** : Une documentation complète des endpoints est disponible à l'adresse : `http://localhost:3000/api-docs`.
+- **Diagrammes UML** : Les diagrammes de classes et de séquence sont disponibles dans le dossier `docs/uml`.
 
