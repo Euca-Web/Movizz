@@ -2,6 +2,25 @@
 
 ![Movizz Logo](https://raw.githubusercontent.com/Euca-Web/Movizz/f11d9d3a109bad3106e5282a0e4b44300309f5c3/code/client/src/assets/svg/logo.svg)
 
+## 📚 Table des matières
+
+1. [📋 Présentation du projet](#-présentation-du-projet)
+2. [🚀 Installation et configuration](#-installation-et-configuration)
+   - [Prérequis](#prérequis)
+   - [Étapes d'installation](#étapes-dinstallation)
+3. [🏗️ Architecture du projet](#️-architecture-du-projet)
+   - [Structure des dossiers](#structure-des-dossiers)
+   - [Backend (Serveur)](#backend-serveur)
+   - [Frontend (Client)](#frontend-client)
+4. [🔧 Utilisation](#-utilisation)
+   - [Démarrage des services](#démarrage-des-services)
+   - [Accès aux applications](#accès-aux-applications)
+   - [Endpoints API principaux](#endpoints-api-principaux)
+5. [📝 Contribution](#-contribution)
+6. [📚 Documentation supplémentaire](#-documentation-supplémentaire)
+
+---
+
 ## 📋 Présentation du projet
 
 Movizz est une bibliothèque de films inspirée de Pathé Home et MyMovix. Cette plateforme permet aux utilisateurs de découvrir des films et d'explorer leurs détails.
