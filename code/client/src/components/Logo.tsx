@@ -1,6 +1,6 @@
 import type React from "react";
 import { Link } from "react-router-dom";
-import "./Logo.css";
+import "../assets/css/Logo.css"; // Adjust the path as necessary
 
 const Logo: React.FC = () => {
 	return (

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import type gender from "../../../model/gender";
 import GenderAPI from "../../../service/GenderAPI";
 import { useNavigate, useParams } from "react-router-dom";
-import "./AdminMovieForm.css";
+import "../../../assets/css/admin/AdminMovieForm.css";
 
 const AdminMovieForm = () => {
 	/*

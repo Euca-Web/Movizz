@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import MovieAPI from "../../service/movie_api";
-import type movies from "../../model/movies";
-import "../admin/movies/AdminMovieList.css";
+import MovieAPI from "../service/movie_api";
+import type movies from "../model/movies";
+// import "../assets/css/";
 
 const MovieList = () => {
 	//etat pour stocker les films
@@ -12,7 +12,6 @@ const MovieList = () => {
 	}, []);
 	return (
 		<>
-
 			<table>
 				<tr>
 					<th>Titre</th>

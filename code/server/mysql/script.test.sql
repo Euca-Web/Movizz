@@ -1,22 +1,22 @@
 -- Création de la base de données
-DROP DATABASE IF EXISTS Movizz;
-CREATE DATABASE Movizz;
+DROP DATABASE IF EXISTS Movizz_test;
+CREATE DATABASE Movizz_test;
 
 -- Table : Roles utilisateurs
-CREATE TABLE Movizz.roles (
+CREATE TABLE Movizz_test.roles (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
     role_name VARCHAR(50) NOT NULL UNIQUE,
     description VARCHAR(255)
 );
 
 -- Table : Genres
-CREATE TABLE Movizz.gender (
+CREATE TABLE Movizz_test.gender (
     gender_id INT AUTO_INCREMENT PRIMARY KEY,
     gender_name VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- Table : Utilisateurs
-CREATE TABLE Movizz.users (
+CREATE TABLE Movizz_test.users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50),
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -26,7 +26,7 @@ CREATE TABLE Movizz.users (
 );
 
 -- Table : Films
-CREATE TABLE Movizz.movies (
+CREATE TABLE Movizz_test.movies (
     movie_id INT AUTO_INCREMENT PRIMARY KEY,
     gender_id INT,
     title VARCHAR(255) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE Movizz.movies (
 );
 
 -- Table : Association Films <-> Genres
-CREATE TABLE Movizz.movie_gender (
+CREATE TABLE Movizz_test.movie_gender (
     movie_id INT NOT NULL,
     gender_id INT NOT NULL,
     PRIMARY KEY (movie_id, gender_id),
@@ -49,7 +49,7 @@ CREATE TABLE Movizz.movie_gender (
 );
 
 -- Table : Commentaires
-CREATE TABLE Movizz.comments (
+CREATE TABLE Movizz_test.comments (
     comment_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     content TEXT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Movizz.comments (
 );
 
 -- Table : Favoris
-CREATE TABLE Movizz.favorites (
+CREATE TABLE Movizz_test.favorites (
     favorite_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     movie_id INT,
@@ -70,16 +70,16 @@ CREATE TABLE Movizz.favorites (
 
 -- Insertion des données
 -- Insertion des rôles
-INSERT INTO Movizz.roles (role_id, role_name, description) VALUES
+INSERT INTO Movizz_test.roles (role_id, role_name, description) VALUES
 (1, 'user', 'Utilisateur standard avec des droits limités'),
 (2, 'admin', 'Administrateur avec tous les droits');
 
 -- Insertion des utilisateurs
-INSERT INTO Movizz.users (username, email, password_hash, role_id) VALUES
+INSERT INTO Movizz_test.users (username, email, password_hash, role_id) VALUES
 ('admin', 'admin@example.com', '$argon2i$v=19$m=16,t=2,p=1$emFkbXBHQVJzN3U1aWU1Vg$6WMsugKFXLRuacf0AL2zHg', 2), -- Admin --mdp=admin
 ('user1', 'user1@example.com', '$argon2i$v=19$m=16,t=2,p=1$aHg4V3BrUFV1VklhVEoyVg$MzFRU/mvrilQQkT3dofg9Q', 1); -- Utilisateur standard --mdp=user1
 
-INSERT INTO Movizz.movies (title, summary, release_date, duration, poster_url, trailer_url) VALUES
+INSERT INTO Movizz_test.movies (title, summary, release_date, duration, poster_url, trailer_url) VALUES
 ('Inception', 'Un voleur qui pénètre les rêves pour voler des secrets.', '2010-07-16', 148, 'https://example.com/inception.jpg', 'https://example.com/inception-trailer.mp4'),
 ('The Matrix', 'Un programmeur découvre la vérité sur sa réalité.', '1999-03-31', 136, 'https://example.com/matrix.jpg', 'https://example.com/matrix-trailer.mp4'),
 ('Interstellar', 'Un voyage spatial pour sauver l’humanité.', '2014-11-07', 169, 'https://example.com/interstellar.jpg', 'https://example.com/interstellar-trailer.mp4'),
@@ -101,7 +101,7 @@ INSERT INTO Movizz.movies (title, summary, release_date, duration, poster_url, t
 ('Black Panther', 'Un roi africain et ses responsabilités.', '2018-02-16', 134, 'https://example.com/black-panther.jpg', 'https://example.com/black-panther-trailer.mp4'),
 ('Wonder Woman', 'Une guerrière amazone découvre le monde.', '2017-06-02', 141, 'https://example.com/wonder-woman.jpg', 'https://example.com/wonder-woman-trailer.mp4');
 
-INSERT INTO Movizz.gender (gender_name) VALUES
+INSERT INTO Movizz_test.gender (gender_name) VALUES
 ('Action'),
 ('Aventure'),
 ('Science-Fiction'),
@@ -123,7 +123,7 @@ INSERT INTO Movizz.gender (gender_name) VALUES
 ('Sport'),
 ('Western');
 
-INSERT INTO Movizz.movie_gender (movie_id, gender_id) VALUES
+INSERT INTO Movizz_test.movie_gender (movie_id, gender_id) VALUES
 (1, 3), (1, 6), -- Inception - Science-Fiction, Thriller
 (2, 3), (2, 1), -- The Matrix - Science-Fiction, Action
 (3, 3), (3, 4), -- Interstellar - Science-Fiction, Drame

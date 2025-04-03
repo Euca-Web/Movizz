@@ -11,8 +11,8 @@ import RecentMovies from "../page/RecentMovies/RecentMovies";
 import LegalNotice from "../page/Legal/LegalNotice";
 import TermsOfUse from "../page/Legal/TermsOfUse";
 import Contact from "../page/Contact/Contact";
-import LoginForm from "../components/login/LoginForm";
-import RegisterForm from "../components/register/RegisterForm";
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 import LogoutPage from "../page/LogoutPage";
 import SimpleLayout from "../layout/SimpleLayout";
 import BaseLayout from "../layout/BaseLayout";
@@ -37,24 +37,26 @@ const router = createBrowserRouter([
 			{
 				path: "films-az",
 				element: (
-					<Guard roles_id={[1,2]}>
+					<Guard roles_id={[1, 2]}>
 						<MoviesAZ />
 					</Guard>
 				),
 			},
 			{
 				path: "films-recents",
-				element: ( 
-					<Guard roles_id={[1,2]}>
-				<RecentMovies />
-				</Guard> )
+				element: (
+					<Guard roles_id={[1, 2]}>
+						<RecentMovies />
+					</Guard>
+				),
 			},
 			{
 				path: "films-compact",
-				element: ( 
-					<Guard roles_id={[1,2]}>
-				<CompactView />
-				</Guard> )
+				element: (
+					<Guard roles_id={[1, 2]}>
+						<CompactView />
+					</Guard>
+				),
 			},
 			{
 				path: "login",
@@ -83,7 +85,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/contact",
-				element: <Contact/>,
+				element: <Contact />,
 			},
 		],
 	},
@@ -91,36 +93,28 @@ const router = createBrowserRouter([
 		// préfixe de toutes le URL enfants
 		path: "/admin/",
 		// Utilisation d'une mise en page
-		element: <SimpleLayout />,
+		element: (
+			<Guard roles_id={[2]}>
+				<SimpleLayout />
+			</Guard>
+		),
 		// Référencer les pages utilisant la mise en page
 		children: [
 			{
 				path: "",
-				element: <Guard roles_id={[2]}>
-				<AdminHomePage />
-				</Guard>
-				,
+				element: <AdminHomePage />,
 			},
 			{
 				path: "movie",
-				element: <Guard roles_id={[2]}>
-				<AdminMoviePage />
-				</Guard>
-				,
+				element: <AdminMoviePage />,
 			},
 			{
 				path: "movie/form/:movie_id?",
-				element: <Guard roles_id={[2]}>
-				<AdminMovieFormPage />
-				</Guard>
-				,
+				element: <AdminMovieFormPage />,
 			},
 			{
 				path: "movie/delete/:movie_id",
-				element: <Guard roles_id={[2]}>
-				<AdminDelete />
-				</Guard>
-				,
+				element: <AdminDelete />,
 			},
 		],
 	},

@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 class AuthMiddleware {
     //vérifier la validité du token et le role de l'utilisateur

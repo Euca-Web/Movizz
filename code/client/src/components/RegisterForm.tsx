@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import SecurityAPI from "../../service/SecurityAPI";
-import type users from "../../model/users";
+import SecurityAPI from "../service/SecurityAPI";
+import type users from "../model/users";
 import { useState } from "react";
-import "./RegisterForm.css";
+import "../assets/css/RegisterForm.css";
 
 const RegisterForm = () => {
 	const {

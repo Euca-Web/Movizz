@@ -1,6 +1,6 @@
 import type React from "react";
 import { Outlet } from "react-router-dom";
-import BackButton from "../components/BackButton/BackButton";
+import BackButton from "../components/BackButton";
 import "../styles/layout/SimpleLayout.css"; // Adjust the path as necessary
 
 const SimpleLayout: React.FC = () => {

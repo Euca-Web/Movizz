@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./PopularMovies.css";
+import "../assets/css/PopularMovies.css";
 
 const PopularMovies = () => {
 	interface movies {

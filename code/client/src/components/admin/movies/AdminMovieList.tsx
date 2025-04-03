@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MovieAPI from "../../../service/movie_api";
 import type movies from "../../../model/movies";
 import { Link } from "react-router-dom";
-import "./AdminMovieList.css";
+import "../../../assets/css/admin/AdminMovieList.css";
 
 const AdminMovieList = () => {
 	//etat pour stocker les films

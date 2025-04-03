@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BackButton.css';
+import '../assets/css/Retour/BackButton.css'; // Adjust the path as necessary
 
 const BackButton: React.FC = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const BackButton: React.FC = () => {
   return (
     <button 
       className="back-button" 
-      type='button'
+      type="button"
       onClick={() => navigate(-1)}
       aria-label="Retour à la page précédente"
     >
@@ -19,7 +19,7 @@ const BackButton: React.FC = () => {
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
       >
-        <title>Retour icon</title>
+        <title>Back arrow icon</title>
         <path 
           d="M19 12H5M12 19L5 12L12 5" 
           stroke="currentColor" 

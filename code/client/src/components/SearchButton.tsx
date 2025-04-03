@@ -1,5 +1,5 @@
 import type React from 'react';
-import './SearchButton.css';
+import '../assets/css/SearchButton.css'; // Adjust the path as necessary
 
 const SearchButton: React.FC = () => {
   return (

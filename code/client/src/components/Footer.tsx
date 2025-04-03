@@ -1,7 +1,7 @@
 import type React from "react";
 import { Link } from "react-router-dom";
-import "./Footer.css";
-import logo from "../../assets/svg/logo.svg";
+import "../assets/css/common/Footer.css"; // Adjust the path as necessary
+import logo from "../assets/svg/logo.svg";
 
 const Footer: React.FC = () => {
 	return (

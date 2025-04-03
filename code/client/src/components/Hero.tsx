@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useState, useEffect } from 'react';
-import './Hero.css';
+import '../assets/css/Hero.css'; // Adjust the path as necessary
 
 const Hero: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);

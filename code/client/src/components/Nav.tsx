@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../provider/UserProvider"; // Ensure this import exists
-import '../Navigation/Nav.css';
+import { UserContext } from "../provider/UserProvider"; // Ensure this import exists
+import '../assets/css/common/Navigation.css';
 
 const Nav = () => {
 
