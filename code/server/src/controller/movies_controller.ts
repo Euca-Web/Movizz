@@ -44,7 +44,7 @@ class moviesController {
         //body = données envoyées par le client
         const result = await new moviesRepository().insert(req.body);
 
-            console.log(result);
+            // console.log(result);
             
 
         if (result instanceof Error) {

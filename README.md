@@ -13,7 +13,6 @@ Le site sera initialement disponible en français, avec une version anglophone p
 
 ### Analyse concurrentielle
 
-
 #### PathéHome
 **Avantages** :
 - Large choix de films récents et variés
@@ -94,6 +93,11 @@ Movizz/
 ├── code/
 │   ├── client/            # Frontend React + TypeScript + Vite
 │   │   ├── src/           # Code source du client
+│   │   ├── components/    # Composants réutilisables
+│   │   ├── pages/         # Pages principales de l'application
+│   │   ├── hooks/         # Hooks personnalisés
+│   │   ├── services/      # Services pour les appels API
+│   │   ├── styles/        # Fichiers de styles globaux
 │   │   └── ...
 │   └── server/            # Backend Express + TypeScript
 │       ├── src/           # Code source du serveur
@@ -110,151 +114,80 @@ Movizz/
 └── mysql-data/            # Données persistantes MySQL
 ```
 
-### Architecture MVC et fonctionnement des composants
+### Backend (Serveur)
 
-Le projet Movizz suit une architecture MVC (Modèle-Vue-Contrôleur) adaptée avec une séparation claire des responsabilités :
+Le backend est construit avec **Node.js**, **Express**, et **TypeScript**. Il suit une architecture MVC (Modèle-Vue-Contrôleur) pour une séparation claire des responsabilités.
 
-#### 1. **Model (Modèle)**
-Les modèles définissent la structure des données manipulées par l'application.
+#### Fonctionnalités principales
 
-```typescript
-// Exemple de modèle (movies.ts)
-type movies = {
-    movie_id: number;
-    title: string;
-    release_year: Date;
-    duration: string;
-    summary: string;
-    poster: string;
-    teaser: string;
-    gender_ids: string;
-    genders: gender[];
-};
+- Gestion des utilisateurs (authentification, autorisation)
+- Gestion des films (CRUD : création, lecture, mise à jour, suppression)
+- Gestion des commentaires et des notes
+- Intégration avec MySQL pour les données structurées
+- Intégration avec MongoDB pour les données non structurées
+
+#### Points clés
+
+- **Sécurité** : Utilisation de middlewares pour la validation des données et la gestion des erreurs.
+- **Scalabilité** : Architecture modulaire permettant une extension facile des fonctionnalités.
+- **Performances** : Optimisation des requêtes SQL et utilisation de caches pour les données fréquemment consultées.
+
+#### Scripts disponibles
+
+```bash
+# Compiler le TypeScript
+npm run compile
+
+# Compiler en mode watch
+npm run build
+
+# Démarrer le serveur de développement
+npm run dev
+
+# Démarrer le serveur en production
+npm run start
 ```
 
-- **Rôle** : Définir les types et interfaces TypeScript qui représentent les entités métier
-- **Fonctionnement** : Chaque modèle correspond à une table de la base de données ou à une entité métier
-- **Avantages** : Typage fort grâce à TypeScript, facilitant la détection d'erreurs à la compilation
+### Frontend (Client)
 
-#### 2. **Repository**
-Les repositories encapsulent la logique d'accès aux données et les opérations CRUD.
+Le frontend est construit avec **React**, **TypeScript**, et **Vite** pour une expérience utilisateur rapide et réactive.
 
-```typescript
-// Exemple de repository (extrait de movies_repository.ts)
-public selectAll = async (): Promise<movies[] | unknown> => {
-    const connection = await new MySqlService().connect();
-    const sql = `SELECT ... FROM ${this.table} ...`;
-    
-    try {
-        const [results] = await connection.execute(sql);
-        // Traitement des résultats...
-        return results;
-    } catch (error) {
-        return error;
-    }
-};
+#### Fonctionnalités principales
+
+- Interface utilisateur intuitive pour la navigation et la recherche de films
+- Système de notation et de commentaires
+- Gestion des utilisateurs (connexion, inscription)
+- Interface d'administration pour la gestion des films et des commentaires
+
+#### Points clés
+
+- **Réactivité** : Utilisation de React Router pour une navigation fluide.
+- **Modularité** : Composants réutilisables pour une maintenance simplifiée.
+- **Performances** : Chargement rapide grâce à Vite et optimisation des assets.
+
+#### Scripts disponibles
+
+```bash
+# Démarrer le serveur de développement
+npm run dev
+
+# Compiler pour la production
+npm run build
+
+# Linter
+npm run lint
+
+# Prévisualiser la version de production
+npm run preview
 ```
-
-- **Rôle** : Gérer toutes les interactions avec la base de données
-- **Fonctionnement** : 
-  - Établit la connexion à la base de données
-  - Exécute les requêtes SQL
-  - Transforme les résultats en objets métier typés
-  - Gère les relations entre les entités (ex: films et genres)
-- **Méthodes principales** : 
-  - `selectAll()` : Récupère tous les enregistrements
-  - `selectOne()` : Récupère un enregistrement par son ID
-  - `insert()` : Crée un nouvel enregistrement
-  - `update()` : Met à jour un enregistrement existant
-  - `delete()` : Supprime un enregistrement
-
-#### 3. **Controller (Contrôleur)**
-Les contrôleurs gèrent les requêtes HTTP et orchestrent les interactions entre les repositories et les réponses.
-
-```typescript
-// Exemple de contrôleur (extrait de movies_controller.ts)
-public index = async (req: Request, res: Response) => {
-    const result = await new moviesRepository().selectAll();
-    if (result instanceof Error) {
-        res.status(400).json({
-            status: 400,
-            message: process.env.NODE_ENV === "prod" ? "error" : result,
-            data: result
-        });
-        return;
-    }
-
-    res.status(200).json({
-        status: 200,
-        message: "Ok",
-        data: result
-    });
-};
-```
-
-- **Rôle** : Traiter les requêtes HTTP et renvoyer les réponses appropriées
-- **Fonctionnement** :
-  - Reçoit les requêtes HTTP via les routes
-  - Extrait et valide les données de la requête
-  - Appelle les méthodes appropriées du repository
-  - Formate et renvoie la réponse au client
-- **Méthodes principales** :
-  - `index()` : Liste tous les éléments
-  - `one()` : Récupère un élément spécifique
-  - `insert()` : Crée un nouvel élément
-  - `update()` : Met à jour un élément existant
-  - `delete()` : Supprime un élément
-
-#### 4. **Router**
-Les routeurs définissent les points d'entrée de l'API et associent les URL aux méthodes des contrôleurs.
-
-```typescript
-// Exemple de routeur (extrait de movies_routeur.ts)
-public getRoutes = () => {
-    this.routeur.get("/", new moviesController().index);
-    this.routeur.get("/:movie_id", new moviesController().one);
-    this.routeur.post("/", new moviesController().insert);
-    this.routeur.put("/", new moviesController().update);
-    
-    return this.routeur;
-};
-```
-
-- **Rôle** : Définir les routes de l'API et les associer aux méthodes des contrôleurs
-- **Fonctionnement** :
-  - Crée un routeur Express
-  - Définit les endpoints HTTP (GET, POST, PUT, DELETE)
-  - Associe chaque endpoint à une méthode du contrôleur correspondant
-  - Peut inclure des middlewares pour l'authentification, la validation, etc.
-- **Méthodes HTTP** :
-  - `GET /` : Liste tous les éléments (index)
-  - `GET /:id` : Récupère un élément spécifique (one)
-  - `POST /` : Crée un nouvel élément (insert)
-  - `PUT /` : Met à jour un élément existant (update)
-  - `DELETE /:id` : Supprime un élément (delete)
 
 ### Flux de données dans l'application
 
-1. **Requête HTTP** → Le client envoie une requête à un endpoint de l'API
-2. **Router** → Reçoit la requête et la dirige vers la méthode appropriée du contrôleur
-3. **Controller** → Traite la requête et appelle la méthode appropriée du repository
-4. **Repository** → Exécute les opérations de base de données et renvoie les résultats
-5. **Controller** → Formate les résultats et renvoie la réponse HTTP au client
-
-### Technologies utilisées
-
-#### Frontend
-- React 18
-- TypeScript
-- Vite
-- React Router
-
-#### Backend
-- Node.js
-- Express
-- TypeScript
-- MySQL (données structurées)
-- MongoDB (données non structurées)
+1. **Requête HTTP** → Le client envoie une requête à un endpoint de l'API.
+2. **Router** → Reçoit la requête et la dirige vers la méthode appropriée du contrôleur.
+3. **Controller** → Traite la requête et appelle la méthode appropriée du repository.
+4. **Repository** → Exécute les opérations de base de données et renvoie les résultats.
+5. **Controller** → Formate les résultats et renvoie la réponse HTTP au client.
 
 ## 🔧 Utilisation
 
@@ -281,49 +214,9 @@ docker compose -f docker-compose.dev.yaml down
 - **GET /movies/:id** : Récupère les détails d'un film spécifique
 - **POST /movies** : Ajoute un nouveau film
 - **PUT /movies** : Met à jour un film existant
+- **DELETE /movies/:id** : Supprime un film
 - **GET /series** : Liste toutes les séries
 - **GET /series/:id** : Récupère les détails d'une série spécifique
-
-## 🧪 Développement
-
-### Scripts disponibles
-
-#### Client (Frontend)
-```bash
-# Démarrer le serveur de développement
-npm run dev
-
-# Compiler pour la production
-npm run build
-
-# Linter
-npm run lint
-
-# Prévisualiser la version de production
-npm run preview
-```
-
-#### Serveur (Backend)
-```bash
-# Compiler le TypeScript
-npm run compile
-
-# Compiler en mode watch
-npm run build
-
-# Démarrer le serveur de développement
-npm run dev
-
-# Démarrer le serveur en production
-npm run start
-```
-
-### Bonnes pratiques de développement
-
-1. **Typage fort** : Utiliser TypeScript pour définir des interfaces claires pour tous les modèles
-2. **Architecture modulaire** : Respecter la séparation des responsabilités (MVC)
-3. **Gestion des erreurs** : Implémenter une gestion cohérente des erreurs dans les repositories et controllers
-4. **Variables d'environnement** : Utiliser les fichiers `.env` pour configurer l'application selon l'environnement
 
 ## 📝 Contribution
 

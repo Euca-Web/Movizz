@@ -7,12 +7,6 @@ const Footer: React.FC = () => {
 	return (
 		<footer className="footer">
 			<div className="footer-content">
-				<p className="welcome-text">
-					Bienvenue sur Movizz, votre bibliothèque en ligne dédiée aux films
-					récents et classiques. Explorez une vaste collection d'œuvres
-					cinématographiques, soigneusement classées et accessibles
-					gratuitement.
-				</p>
 
 				<div className="footer-links">
 					<Link to="/conditions-utilisation">Conditions d'utilisation</Link>

@@ -87,11 +87,8 @@ const AdminMovieForm = () => {
 
 		//requête HTTP
 		const request = movie_id
-		? await new MovieAPI().update(formData)
-		: await new MovieAPI().insert(formData);	
-
-
-		
+			? await new MovieAPI().update(formData)
+			: await new MovieAPI().insert(formData);
 
 		if ([201, 201].indexOf(request.status) > -1) {
 			//redirection
@@ -110,20 +107,19 @@ const AdminMovieForm = () => {
 		>
 			<p>
 				<label htmlFor="gender_ids">Genre :</label>
-				{/* <select id="gender_ids" {...register('gender_ids', { required: " Ce champ est obligatoire !" })}> 
-            <option value=""> -- Choisir un genre -- </option> 
-            {genders?.map((gender:gender) => {
-              return <option key={Math.random()} value={gender.gender_id}>{gender.gender_name}</option>
-            })}
-          </select> */}
-				<input
-					type="checkbox"
-					{...register("gender_ids", {
-						required: " Ce champ est obligatoire !",
-					})}
-					/>
-					<label> </label>
-				
+				{genders?.map((gender: gender) => (
+					<div key={gender.gender_id}>
+						<input
+							type="checkbox"
+							id={`gender_${gender.gender_id}`}
+							value={gender.gender_id}
+							{...register("gender_ids", {
+								required: " Ce champ est obligatoire !",
+							})}
+						/>
+						<label htmlFor={`gender_${gender.gender_id}`}>{gender.gender_name}</label>
+					</div>
+				))}
 				{errors.gender_ids && <span>{errors.gender_ids.message}</span>}
 			</p>
 			<p>
@@ -170,9 +166,14 @@ const AdminMovieForm = () => {
 				<input
 					type="file"
 					id="poster_url"
-					{...register("poster_url", movie_id? {} : {
-						required: " Ce champ est obligatoire ! ",
-					})}	
+					{...register(
+						"poster_url",
+						movie_id
+							? {}
+							: {
+									required: " Ce champ est obligatoire ! ",
+								},
+					)}
 				/>
 				{errors.poster_url && <span>{errors.poster_url.message}</span>}
 			</p>
@@ -187,7 +188,7 @@ const AdminMovieForm = () => {
 				{errors.director && <span>{errors.director.message}</span>}
 			</p>
 			<p>
-				<input type="hidden" {...register('movie_id')} value= {movie_id}/>
+				<input type="hidden" {...register("movie_id")} value={movie_id} />
 				<button type="submit"> Ajouter </button>
 			</p>
 		</form>

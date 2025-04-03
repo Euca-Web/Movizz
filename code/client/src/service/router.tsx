@@ -14,6 +14,8 @@ import TermsOfUse from "../page/Legal/TermsOfUse";
 import Contact from "../page/Contact/Contact";
 import LoginForm from "../component/login/LoginForm";
 import RegisterForm from "../component/register/RegisterForm";
+import LogoutPage from "../page/LogoutPage";
+import SimpleLayout from "../layout/SimpleLayout";
 
 const router = createBrowserRouter([
 	{
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "films-az",
-				element: <MoviesAZ/>
+				element:<Guard roles_id={[1]}><MoviesAZ/></Guard>
 			},
 			{
 				path: "films-recents",
@@ -42,26 +44,36 @@ const router = createBrowserRouter([
 				element: <CompactView/>
 			},
 			{
-				path: "mentions-legales",
-				element: <LegalNotice/>
-			},
-			{
-				path: "conditions-utilisation",
-				element: <TermsOfUse/>
-			},
-			{
-				path: "contact",
-				element: <Contact/>
-			},
-			{
 				path: "login",
 				element: <LoginForm />
 			},
 			{
 				path: "register",
 				element: <RegisterForm />
+			},
+			{
+				path: "logout",
+				element: <LogoutPage />
 			}
+
 		],
+	},
+	{
+		element: <SimpleLayout />,
+		children: [
+		  {
+			path: '/mentions-legales',
+			element: <LegalNotice />
+		  },
+		  {
+			path: '/conditions-utilisation',
+			element: <TermsOfUse />
+		  },
+		  {
+			path: '/contact',
+			element: <Contact />
+		  }
+		]
 	},
 	{
 		// préfixe de toutes le URL enfants
