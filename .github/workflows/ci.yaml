@@ -54,4 +54,9 @@ jobs:
         mysql -uroot -proot -e 'SHOW DATABASES;'
         echo "Test databases installed successfully"
 
-    # -
+    -
+      name: Execute Tests
+      run: |
+        cd code/server
+        npm run test
+        echo "Tests executed successfully"
