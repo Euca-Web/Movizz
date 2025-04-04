@@ -44,3 +44,14 @@ jobs:
         cd code/client
         npm run build
         echo "Tests executed successfully"
+
+    -
+      name: Install test databases
+      run: | 
+        sudo service mysql start
+        cd code/server/mysql
+        mysql -uroot -proot -e 'SOURCE script.test.sql,'
+        mysql -uroot -proot -e 'SHOW DATABASES,'
+        echo "Test databases installed successfully"
+
+    # -
