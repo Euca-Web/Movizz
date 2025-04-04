@@ -16,4 +16,11 @@ jobs:
         
       name: Clone Github Repository
       uses: actions/checkout@v4
+
+    -
+      name: Install Dependencies
+      run: |
+        cd code/server
+        npm ci
+        echo "Installing dependencies..."
         
