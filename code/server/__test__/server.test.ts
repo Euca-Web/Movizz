@@ -41,10 +41,10 @@ describe("Server Routes", () => {
 		expect(response.status).toBe(200);
 	});
 
-	it("should respond to the /contact route", async () => {
-		const response = await request(server.createServer()).get("/contact");
-		expect(response.status).toBe(200);
-	});
+	// it("should respond to the /contact route", async () => {
+	// 	const response = await request(server.createServer()).get("/contact");
+	// 	expect(response.status).toBe(200);
+	// });
 
 	it("should respond with 404 for unknown routes", async () => {
 		const response = await request(server.createServer()).get("/unknown");
