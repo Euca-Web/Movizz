@@ -21,10 +21,13 @@ class MovieAPI{
     };
 
     //Créer un enregistrement
-    public insert = async (data:FormData) => {
+    public insert = async (data:FormData, token: string) => {
         const request = new Request
         (`${import.meta.env.VITE_API_URL}/movie`, {
             method: 'POST', 
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
             body: data
         });
         const response = await fetch(request);
@@ -32,10 +35,13 @@ class MovieAPI{
     };
     
     //Mettre à jour un enregistrement
-    public update = async (data:FormData) => {
+    public update = async (data:FormData, token: string) => {
         const request = new Request
         (`${import.meta.env.VITE_API_URL}/movie`, {
             method: 'PUT', 
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
             body: data
         });
         const response = await fetch(request);
