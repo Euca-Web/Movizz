@@ -8,10 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -
-        run: | 
-          ls
-          mkdir test
-          cd test 
-          touch index.html
-          
+        # run: | 
+        #   ls
+        #   mkdir test
+        #   cd test 
+        #   touch index.html
+        
+      name: Clone Github Repository
+      uses: actions/checkout@v4
         
