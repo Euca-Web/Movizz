@@ -23,7 +23,13 @@ jobs:
         cd code/server
         npm ci
         echo "Dependencies installed successfully"
-
+    -
+        name: Install Dependencies
+        run: |
+            cd code/client
+            npm ci
+            echo "Dependencies installed successfully"
+        
     -
       name: Compile Server Files
       run: |
@@ -31,6 +37,7 @@ jobs:
         npm run compile
         echo "Tests executed successfully"
 
+    
     -
       name: Compile Client Files
       run: |
