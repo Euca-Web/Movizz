@@ -14,6 +14,8 @@ const AdminDelete = () => {
 		formData.append("movie_id", movie_id as string);
 
 		new MovieAPI().delete(formData).then((response) => {
+			console.log(response);
+			// redirection
 			navigate("/admin/movie");
 		});
 	}, [movie_id, navigate]);

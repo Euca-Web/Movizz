@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import type movies from "../../../model/movies";
 import MovieAPI from "../../../service/movie_api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type gender from "../../../model/gender";
 import GenderAPI from "../../../service/GenderAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../../assets/css/admin/AdminMovieForm.css";
+import SecurityAPI from "../../../service/SecurityAPI";
+import { UserContext } from "../../../provider/UserProvider";
 
 const AdminMovieForm = () => {
 	/*
@@ -25,6 +27,8 @@ const AdminMovieForm = () => {
 	const [genders, setgenders] = useState<gender[]>(); // tableau de genres
 
 	const { movie_id } = useParams();
+
+	const { user } = useContext(UserContext);
 
 	// const [loading, setloading] = useState<boolean>(true); // chargement de la page
 	// const [error, seterror] = useState<string | null>(null); // erreur de chargement
@@ -85,10 +89,12 @@ const AdminMovieForm = () => {
 		//console.log(values);
 		//console.log(formData);
 
+		const auth = await new SecurityAPI().auth(user);
+
 		//requête HTTP
 		const request = movie_id
-			? await new MovieAPI().update(formData)
-			: await new MovieAPI().insert(formData);
+			? await new MovieAPI().update(formData, auth.data.token)
+			: await new MovieAPI().insert(formData, auth.data.token);
 
 		if ([201, 201].indexOf(request.status) > -1) {
 			//redirection

@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    -
+    # -
         # run: | 
         #   ls
         #   mkdir test
         #   cd test 
         #   touch index.html
-        
+    -   
       name: Clone Github Repository
       uses: actions/checkout@v4
 
@@ -22,4 +22,18 @@ jobs:
       run: |
         cd code/server
         npm ci
-        
+        echo "Dependencies installed successfully"
+
+    -
+      name: Compile Server Files
+      run: |
+        cd code/server
+        npm run compile
+        echo "Tests executed successfully"
+
+    -
+      name: Compile Client Files
+      run: |
+        cd code/client
+        npm run build
+        echo "Tests executed successfully"
