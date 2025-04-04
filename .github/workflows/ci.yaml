@@ -50,8 +50,8 @@ jobs:
       run: | 
         sudo service mysql start
         cd code/server/mysql
-        mysql -uroot -proot -e 'SOURCE script.test.sql,'
-        mysql -uroot -proot -e 'SHOW DATABASES,'
+        mysql -uroot -proot -e 'SOURCE script.test.sql;'
+        mysql -uroot -proot -e 'SHOW DATABASES;'
         echo "Test databases installed successfully"
 
     # -
