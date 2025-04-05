@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import ContactRepository from "../repository/contact_repository.js";
+import { sendConfirmationEmail } from "../service/email_service.js";
 
 class ContactController {
 	// Récupérer tous les documents
