@@ -8,6 +8,7 @@
 2. [🚀 Installation et configuration](#-installation-et-configuration)
    - [Prérequis](#prérequis)
    - [Étapes d'installation](#étapes-dinstallation)
+   - [Configuration de l'environnement local](#configuration-de-lenvironnement-local)
 3. [🏗️ Architecture du projet](#️-architecture-du-projet)
    - [Structure des dossiers](#structure-des-dossiers)
    - [Backend (Serveur)](#backend-serveur)
@@ -16,8 +17,11 @@
    - [Démarrage des services](#démarrage-des-services)
    - [Accès aux applications](#accès-aux-applications)
    - [Endpoints API principaux](#endpoints-api-principaux)
-5. [📝 Contribution](#-contribution)
-6. [📚 Documentation supplémentaire](#-documentation-supplémentaire)
+   - [Exemples d'utilisation de l'API](#exemples-dutilisation-de-lapi)
+5. [🛠️ Déploiement en production](#️-déploiement-en-production)
+6. [📊 Gestion des erreurs et surveillance](#-gestion-des-erreurs-et-surveillance)
+7. [📝 Contribution](#-contribution)
+8. [📚 Documentation supplémentaire](#-documentation-supplémentaire)
 
 ---
 
@@ -84,6 +88,26 @@ Le site sera initialement disponible en français, avec une version anglophone p
    npm run dev
    ```
 
+### Configuration de l'environnement local
+
+- Créez un fichier `.env` dans les dossiers `code/server` et `code/client` avec les variables suivantes :
+
+#### Backend (`code/server/.env`)
+```env
+PORT=3000
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=VOTREMDP
+MYSQL_PASSWORD=VOTREMDP
+MYSQL_DATABASE=VOTRENOMDEBDD
+JWT_SECRET=your_jwt_secret
+```
+
+#### Frontend (`code/client/.env`)
+```env
+VITE_API_URL=http://localhost:3000
+```
+
 ---
 
 ## 🏗️ Architecture du projet
@@ -149,6 +173,11 @@ Le backend est construit avec **Node.js**, **Express**, et **TypeScript**. Il su
   - Mise en cache des requêtes fréquentes avec Redis.
   - Optimisation des requêtes SQL avec des index.
 
+#### Scripts de création et de peuplement de la base
+
+- **MySQL** : Fichier `code/server/mysql/script.dev.sql`
+- **MongoDB** : Scripts dans `code/server/mongodb/`
+
 ---
 
 ### Frontend (Client)
@@ -208,6 +237,68 @@ docker compose -f docker-compose.dev.yaml down
 - **POST /movies** : Ajoute un nouveau film.
 - **PUT /movies/:id** : Met à jour un film existant.
 - **DELETE /movies/:id** : Supprime un film.
+
+### Exemples d'utilisation de l'API
+
+#### Exemple avec `curl`
+```bash
+curl -X GET http://localhost:3000/movies
+```
+
+---
+
+## 🛠️ Déploiement en production
+
+1. **Configurer les variables d'environnement** :
+   - Créez un fichier `.env` pour le backend (`code/server/.env`) et le frontend (`code/client/.env`) avec les variables nécessaires (voir la section [Configuration de l'environnement local](#configuration-de-lenvironnement-local)).
+   - Assurez-vous que les secrets (comme `JWT_SECRET` et les identifiants de base de données) sont sécurisés.
+
+2. **Base de données** :
+   - Exportez les scripts SQL fournis dans `code/server/mysql/script.test.sql` pour initialiser la base de données MySQL.
+   - Configurez un serveur MySQL en production (par exemple, sur AWS RDS ou un autre service cloud).
+
+3. **Backend** :
+   - Construisez le projet backend avec TypeScript :
+     ```bash
+     cd code/server
+     npm run build
+     ```
+   - Déployez les fichiers compilés (`dist/`) sur un serveur (par exemple, avec **PM2**, **Docker**, ou un service cloud comme AWS EC2 ou Heroku).
+
+4. **Frontend** :
+   - Construisez le projet frontend avec Vite :
+     ```bash
+     cd code/client
+     npm run build
+     ```
+   - Déployez les fichiers générés dans le dossier `dist/` sur un service d'hébergement statique comme **Netlify**, **Vercel**, ou **AWS S3 avec CloudFront**.
+
+5. **Reverse Proxy** :
+   - Configurez un reverse proxy (par exemple, avec **NGINX** ou **Apache**) pour servir le frontend et rediriger les requêtes API vers le backend.
+
+6. **Surveillance et logs** :
+   - Configurez un outil de gestion des logs comme **Logrotate** ou un service cloud (ex. **Elastic Stack**, **Datadog**).
+   - Activez la surveillance des performances avec des outils comme **UptimeRobot** ou **Pingdom**.
+
+---
+
+## 📊 Gestion des erreurs et surveillance
+
+- **Gestion des erreurs** :
+  - Implémentez un middleware centralisé dans le backend pour capturer et gérer les erreurs (déjà présent dans votre projet si vous utilisez Express).
+  - Ajoutez des messages d'erreur clairs pour les utilisateurs et des logs détaillés pour les administrateurs.
+
+- **Surveillance des logs** :
+  - Utilisez un outil comme **Winston** pour centraliser les logs dans le backend.
+  - Configurez un stockage persistant pour les logs (par exemple, un fichier ou un service cloud).
+
+- **Monitoring des performances** :
+  - Intégrez un outil comme **PM2** pour surveiller les processus Node.js en production.
+  - Configurez des alertes pour détecter les anomalies (par exemple, des temps de réponse élevés ou des erreurs fréquentes).
+
+- **Tests en production** :
+  - Effectuez des tests réguliers des endpoints API avec des outils comme **Postman** ou **Newman**.
+  - Surveillez les performances du frontend avec des outils comme **Lighthouse** ou **WebPageTest**.
 
 ---
 
