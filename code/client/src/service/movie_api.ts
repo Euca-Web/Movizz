@@ -9,7 +9,11 @@ class MovieAPI{
 
         );
         const response = await fetch(request);
-        return response.json();
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        return response.json(); // Appelé uniquement si la réponse est OK
     };
     //Selectionner un enregistrement
     public SelectOne = async (id: number) => {

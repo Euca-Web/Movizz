@@ -17,3 +17,64 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.home-page {
+    text-align: center;
+    padding: 20px;
+    display: flex; /* Ajout de Flexbox */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    min-height: 100vh; /* Assure que la hauteur couvre tout l'écran */
+}
+
+.home-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 150px;
+}
+
+.home-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.home-actions {
+    margin: 20px 0;
+}
+
+.home-button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+}
+
+.home-preview {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.home-preview h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.home-preview ul {
+    list-style: none;
+    padding: 0;
+}
+
+.home-preview li {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}

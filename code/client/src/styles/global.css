@@ -20,6 +20,12 @@ body {
   min-height: calc(100vh - 10px);
   overflow-x: hidden;
 }
+html {
+  scrollbar-width: none; /* Cache la barre de défilement pour Firefox */
+}
+body::-webkit-scrollbar {
+  display: none; /* Cache la barre de défilement pour Chrome, Safari et Edge */
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);

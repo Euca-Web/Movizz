@@ -86,8 +86,10 @@ const AdminMovieForm = () => {
 		formData.append("trailer_url", values.trailer_url);
 		formData.append("director", values.director);
 
-		//console.log(values);
-		//console.log(formData);
+		console.log(values);
+		console.log(formData);
+
+
 
 		const auth = await new SecurityAPI().auth(user);
 
