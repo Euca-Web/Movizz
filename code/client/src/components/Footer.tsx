@@ -24,7 +24,28 @@ const Footer: React.FC = () => {
 					<Link to="/contact">Nous contacter</Link>
 				</div>
 
-				
+				{/* <div className="footer-socials">
+                    <a
+                        href="https://www.instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-link"
+                    >
+                        <img
+                            src="/path/to/instagram-icon.svg"
+                            alt="Instagram"
+                            className="social-icon"
+                        />
+                    </a>
+                    <a href="mailto:contact@movizz.com" className="social-link">
+                        <img
+                            src="/path/to/mail-icon.svg"
+                            alt="Email"
+                            className="social-icon"
+                        />
+                    </a>
+                </div> */}
+
 				<p className="copyright">© 2025 Movizz. Tous droits réservés.</p>
 			</div>
 		</footer>

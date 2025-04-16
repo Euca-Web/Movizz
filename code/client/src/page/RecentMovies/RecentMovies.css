@@ -1,6 +1,7 @@
 .recent-movies {
   padding: var(--space-xl);
   padding-top: 60px;
+  min-height: 69vh;
 }
 
 .movies-grid {
@@ -56,4 +57,11 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
   margin-top: 5px;
+}
+.content-grid-recent {
+  display: grid
+;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }

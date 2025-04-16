@@ -1,6 +1,8 @@
 .movies-az {
   padding: var(--space-xl);
   padding-top: 60px;
+  min-height: auto;
+  
 }
 
 .alphabet-filter {

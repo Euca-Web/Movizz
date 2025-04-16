@@ -1,7 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+
+/* Supprime les marges, les paddings, les bordures et réinitialise les styles par défaut pour tous les éléments */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -15,34 +13,44 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	/* biome-ignore lint/suspicious/noShorthandPropertyOverrides: <explanation> */
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0; /* Supprime les marges */
+    padding: 0; /* Supprime les espacements internes */
+    border: 0; /* Supprime les bordures */
+    font: inherit; /* Réinitialise la police */
+    font-size: 100%; /* Définit la taille de police par défaut */
+    vertical-align: baseline; /* Réinitialise l'alignement vertical */
 }
-/* HTML5 display-role reset for older browsers */
+
+/* Définit les nouveaux éléments HTML5 comme des blocs */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
+
+/* Réinitialise le style du body */
 body {
-	line-height: 1;
+    line-height: 1; /* Définit une hauteur de ligne par défaut */
 }
+
+/* Supprime les styles de liste par défaut */
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
+
+/* Supprime les styles de citation par défaut */
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
+
+/* Supprime les guillemets ajoutés automatiquement pour les citations */
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
+
+/* Réinitialise les styles des tableaux */
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse; /* Fusionne les bordures des cellules */
+    border-spacing: 0; /* Supprime l'espacement entre les cellules */
 }

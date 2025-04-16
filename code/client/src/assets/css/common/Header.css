@@ -98,8 +98,6 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-
-
 .nav-link {
   margin: 0 1rem;
   color: white;
@@ -135,4 +133,118 @@
 
 .login-button:hover {
   background-color: var(--color-purple-dark);
+}
+
+/* Bouton burger */
+.burger-menu {
+  display: none; /* Masqué par défaut */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.burger-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+  display: none; /* Masqué par défaut */
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(10, 12, 23, 0.9);
+  padding: 1rem;
+  z-index: 200;
+}
+
+.dropdown-menu.active {
+  display: flex;
+}
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive pour tablettes */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .header-left {
+    flex: 1;
+  }
+
+  .header-right {
+    flex: 1;
+    justify-content: flex-end;
+    
+  }
+
+  .search-container {
+    display: none; /* Masquer la barre de recherche */
+  }
+  nav.main-nav{
+    margin-left: 20%;
+  }
+}
+/* Responsive pour téléphones */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-right {
+    display: flex; /* Rendre les boutons visibles */
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  nav.main-nav{
+    margin-left: 25%;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+    margin: 0 0.5rem; /* Réduire l'espacement entre les liens */
+  }
+  .logo {
+    margin: 0 auto; /* Centrer le logo */
+  }
+
+  .burger-menu {
+    display: flex; /* Afficher le menu burger */
+  }
+
+  .main-nav {
+    display: none; /* Masquer la navigation principale */
+  }
+
+  .header-right {
+    display: none; /* Masquer les boutons */
+  }
 }

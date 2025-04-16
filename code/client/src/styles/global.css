@@ -1,96 +1,109 @@
+/* Importation des polices depuis Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+/* Importation des variables CSS */
 @import './variables.css';
 
-/* Reset */
+/* Reset des styles par défaut */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Supprime les marges par défaut */
+  padding: 0; /* Supprime les espacements internes par défaut */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans les dimensions des éléments */
 }
 
+/* Style global pour le body */
 body {
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.5;
-  margin: 5px;
-  min-height: calc(100vh - 10px);
-  overflow-x: hidden;
-}
-html {
-  scrollbar-width: none; /* Cache la barre de défilement pour Firefox */
-}
-body::-webkit-scrollbar {
-  display: none; /* Cache la barre de défilement pour Chrome, Safari et Edge */
+  font-family: var(--font-body); /* Utilise la police définie dans les variables */
+  -webkit-font-smoothing: antialiased; /* Améliore le rendu des polices sur Webkit */
+  -moz-osx-font-smoothing: grayscale; /* Améliore le rendu des polices sur macOS */
+  background-color: var(--background-color); /* Définit la couleur de fond */
+  color: var(--text-color); /* Définit la couleur du texte */
+  line-height: 1.5; /* Définit l'interligne */
+  margin: 5px; /* Ajoute une marge autour du body */
+  min-height: calc(100vh - 10px); /* Assure que le body occupe au moins toute la hauteur de la fenêtre */
+  overflow-x: hidden; /* Désactive le défilement horizontal */
 }
 
+/* Style pour cacher la barre de défilement sur Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Style pour cacher la barre de défilement sur Chrome, Safari et Edge */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Styles pour les titres (h1 à h6) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-heading); /* Utilise la police définie pour les titres */
+  text-transform: uppercase; /* Met le texte en majuscules */
+  letter-spacing: 0.05em; /* Ajoute un espacement entre les lettres */
 }
 
 h1 {
-  font-size: var(--font-size-h1);
+  font-size: var(--font-size-h1); /* Taille de police pour h1 */
 }
 
 h2 {
-  font-size: var(--font-size-h2);
+  font-size: var(--font-size-h2); /* Taille de police pour h2 */
 }
 
 h3 {
-  font-size: var(--font-size-h3);
+  font-size: var(--font-size-h3); /* Taille de police pour h3 */
 }
 
 h4 {
-  font-size: var(--font-size-h4);
+  font-size: var(--font-size-h4); /* Taille de police pour h4 */
 }
 
+/* Style pour les boutons */
 button {
-  font-family: inherit;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: none;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
-  background-color: var(--color-purple);
-  color: var(--color-white);
-  transition: background-color 0.2s ease;
+  font-family: inherit; /* Hérite de la police du parent */
+  font-weight: 700; /* Définit un poids de police gras */
+  text-transform: uppercase; /* Met le texte en majuscules */
+  cursor: pointer; /* Change le curseur en pointeur */
+  border: none; /* Supprime la bordure */
+  padding: var(--spacing-sm) var(--spacing-md); /* Ajoute des espacements internes */
+  border-radius: var(--border-radius); /* Arrondit les coins */
+  background-color: var(--color-purple); /* Couleur de fond */
+  color: var(--color-white); /* Couleur du texte */
+  transition: background-color 0.2s ease; /* Ajoute une transition pour le changement de couleur */
 }
 
 button:hover {
-  background-color: var(--color-purple-dark);
+  background-color: var(--color-purple-dark); /* Change la couleur de fond au survol */
 }
 
+/* Style pour les champs de saisie */
 input {
-  font-family: var(--font-body);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--color-gray);
-  background-color: var(--input-bg);
-  color: var(--text-color);
+  font-family: var(--font-body); /* Utilise la police définie pour le corps */
+  padding: var(--spacing-sm) var(--spacing-md); /* Ajoute des espacements internes */
+  border-radius: var(--border-radius); /* Arrondit les coins */
+  border: 1px solid var(--color-gray); /* Ajoute une bordure grise */
+  background-color: var(--input-bg); /* Couleur de fond */
+  color: var(--text-color); /* Couleur du texte */
 }
 
 input:focus {
-  outline: none;
-  border-color: var(--color-purple);
+  outline: none; /* Supprime le contour par défaut */
+  border-color: var(--color-purple); /* Change la couleur de la bordure au focus */
 }
 
+/* Style pour les liens */
 a {
-  color: var(--text-color);
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--text-color); /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement */
+  transition: color 0.2s ease; /* Ajoute une transition pour le changement de couleur */
 }
 
 a:hover {
-  color: var(--color-purple);
+  color: var(--color-purple); /* Change la couleur du texte au survol */
 }
 
+/* Style pour les images */
 img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%; /* Limite la largeur maximale à 100% du conteneur */
+  height: auto; /* Ajuste la hauteur automatiquement pour conserver les proportions */
 }

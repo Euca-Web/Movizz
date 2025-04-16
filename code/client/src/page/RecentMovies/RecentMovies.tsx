@@ -54,7 +54,7 @@ const RecentMovies: React.FC = () => {
 		<div className="recent-movies">
 			<h1>Derniers films ajoutés</h1>
 
-			<div className="content-grid">
+			<div className="content-grid-recent">
 				{movies.map((movie) => (
 					<div key={movie.movie_id} className="movie-card">
 						{movie.poster_url ? (

@@ -1,70 +1,90 @@
 /*
 styles communs à toutes les pages 
 */
-*{
-    box-sizing: border-box;
+* {
+    box-sizing: border-box; /* Assure que le padding et la bordure sont inclus dans les dimensions des éléments */
+    font: inherit; /* Hérite de la police définie dans l'élément parent */
 }
-body{
-    text-decoration: none;
-    background-color: rgb(0, 0, 0);
-    color: rgb(243, 243, 243);
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    text-align: center;
-}
-html, body {
-    height: 100%; /* Assure que le body occupe toute la hauteur de la fenêtre */
-    margin: 0;
-    padding: 0;
-}
-a{
-    text-decoration: none;
-    color: azure;
-}
-h1{
-    text-align: center;
-    font-size: 2rem;
-    margin: 1rem 0;
-    color: azure;
-}
-footer {
-    text-align: center;
-    background-color: rgb(0, 0, 0);
-    color: azure;
-    padding: 1rem;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    margin-top: auto; /* Pousse le footer vers le bas si nécessaire */
-}
-header{
-    background-color: rgb(0, 0, 0);
-    color: azure;
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-a:hover{
-    color: rgb(0, 0, 0);
-}
-img{width: 100%;}
 
-title{
+/* Style global pour le body */
+body {
+    text-decoration: none; /* Supprime les décorations de texte par défaut */
+    background-color: rgb(0, 0, 0); /* Définit un fond noir */
+    color: rgb(243, 243, 243); /* Définit une couleur de texte claire */
+    font-family: 'Roboto', sans-serif; /* Applique la police Roboto */
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les espacements internes par défaut */
+    align-items: center; /* Centre les éléments enfants verticalement (utile si body est un conteneur flex) */
+    text-align: center; /* Centre le texte horizontalement */
+}
+
+/* Assure que le body occupe toute la hauteur de la fenêtre */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style pour les liens */
+a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: azure; /* Définit une couleur claire pour les liens */
+}
+
+/* Style pour les titres h1 */
+h1 {
+    text-align: center; /* Centre le texte */
+    font-size: 2rem; /* Définit une taille de police de 2 rem */
+    margin: 1rem 0; /* Ajoute une marge verticale */
+    color: azure; /* Définit une couleur claire pour le texte */
+}
+
+/* Style pour le footer */
+footer {
+    background-color: rgb(0, 0, 0); /* Fond noir */
+    color: azure; /* Texte clair */
+    padding: 1rem; /* Ajoute un espacement interne */
+    width: 100%; /* Occupe toute la largeur */
+}
+
+/* Style pour le header */
+header {
+    background-color: rgb(0, 0, 0); /* Fond noir */
+    color: azure; /* Texte clair */
+    padding: 1rem; /* Ajoute un espacement interne */
+
+    top: 0; /* Positionne le header en haut */
+    width: 100%; /* Occupe toute la largeur */
+}
+
+/* Style pour les liens au survol */
+a:hover {
+    color: rgb(0, 0, 0); /* Change la couleur du texte au survol */
+}
+
+/* Style pour les images */
+img {
+    width: 100%; /* Les images occupent toute la largeur de leur conteneur */
+}
+
+/* Style pour les titres (incorrect : "title" n'est pas une balise HTML valide) */
+title {
     text-align: center;
     font-size: 2rem;
     margin: 1rem 0;
-    color: azure;    
+    color: azure;
 }
-td{
-    text-align: center;
+
+/* Style pour les cellules de tableau */
+td {
+    text-align: center; /* Centre le texte dans les cellules */
 }
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem;
+
+/* Style pour les formulaires */
+form {
+    display: flex; /* Utilise un conteneur flex pour organiser les éléments */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center; /* Centre les éléments verticalement */
+    margin: 1rem; /* Ajoute une marge autour du formulaire */
 }

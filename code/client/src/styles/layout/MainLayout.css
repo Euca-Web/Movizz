@@ -20,7 +20,6 @@
   /* Header */
   .main-layout > header {
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -31,6 +30,7 @@
     flex: 1;
     margin-top: 0;
     width: 100%;
+    min-height: 100vh;
   }
   
   /* Container pour le contenu centré */
@@ -46,12 +46,6 @@
     width: 100%;
     margin: 0;
     padding: 0;
-  }
-  
-  /* Footer */
-  .main-layout > footer {
-    width: 100%;
-    margin-top: auto;
   }
   
   @media (min-width: 768px) {
