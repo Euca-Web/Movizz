@@ -19,7 +19,15 @@
 .movie-card:hover {
   transform: scale(1.05);
 }
-
+.movie-card img {
+  transition: opacity 0.3s ease-in-out;
+}
+.movie-card:hover img {
+  opacity: 0.5; /* Réduit l'opacité pour assombrir l'image */
+}
+.movie-card:hover .movie-info {
+  opacity: 1; /* Rendre les informations plus visibles si nécessaire */
+}
 .movie-poster {
   position: relative;
 }

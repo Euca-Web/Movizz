@@ -9,6 +9,7 @@ interface Movie {
 	release_date: string;
 	duration: string; // Durée en minutes (exemple : "120")
 	poster_url: string;
+	summary: string;
 }
 
 // Fonction pour convertir la durée en heures et minutes
@@ -82,6 +83,11 @@ const RecentMovies: React.FC = () => {
 								</span>
 								<span>{formatDuration(movie.duration)}</span>
 							</div>
+							<p className="movie-summary">
+								{movie.summary.length > 100
+									? `${movie.summary.substring(0, 100)}...`
+									: movie.summary}
+							</p>
 						</div>
 					</div>
 				))}
