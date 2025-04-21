@@ -34,10 +34,19 @@ const Header: React.FC = () => {
 					</Link>
 				</div>
 
-				 {/* Bouton Burger */}
+				{/* Bouton Burger */}
 				<div
 					className="burger-menu"
-					onClick={() => setIsMenuOpen(!isMenuOpen)} // Gestion de l'état pour ouvrir/fermer le menu
+					onClick={() => {
+						console.log("Menu clicked"); // Vérifie si le clic est détecté
+						setIsMenuOpen(!isMenuOpen);
+					}}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							console.log("Menu activated via keyboard"); // Vérifie si le clavier est détecté
+							setIsMenuOpen(!isMenuOpen);
+						}
+					}}
 					aria-label="Menu"
 				>
 					<span></span>
@@ -47,35 +56,63 @@ const Header: React.FC = () => {
 
 				{/* Menu déroulant */}
 				{isMenuOpen && (
-					<div className="dropdown-menu">
+					<div className={`dropdown-menu ${isMenuOpen ? "open" : ""}`}>
 						{user.role_id && (
 							<>
-								<Link to="/films-az" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+								<Link
+									to="/films-az"
+									className="nav-link"
+									onClick={() => setIsMenuOpen(false)}
+								>
 									A à Z
 								</Link>
-								<Link to="/films-recents" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+								<Link
+									to="/films-recents"
+									className="nav-link"
+									onClick={() => setIsMenuOpen(false)}
+								>
 									Dernières sorties
 								</Link>
-								<Link to="/films-compact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+								<Link
+									to="/films-compact"
+									className="nav-link"
+									onClick={() => setIsMenuOpen(false)}
+								>
 									Vue compact
 								</Link>
 							</>
 						)}
 						{user.role_id === 2 && (
-							<Link to="/admin" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+							<Link
+								to="/admin"
+								className="nav-link"
+								onClick={() => setIsMenuOpen(false)}
+							>
 								Administration
 							</Link>
 						)}
 						{user.role_id ? (
-							<Link to="/logout" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+							<Link
+								to="/logout"
+								className="nav-link"
+								onClick={() => setIsMenuOpen(false)}
+							>
 								Déconnexion
 							</Link>
 						) : (
 							<>
-								<Link to="/register" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+								<Link
+									to="/register"
+									className="nav-link"
+									onClick={() => setIsMenuOpen(false)}
+								>
 									Inscription
 								</Link>
-								<Link to="/login" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+								<Link
+									to="/login"
+									className="nav-link"
+									onClick={() => setIsMenuOpen(false)}
+								>
 									Connexion
 								</Link>
 							</>
@@ -83,7 +120,7 @@ const Header: React.FC = () => {
 					</div>
 				)}
 
-				{/* Barre de recherche */}
+				{/* Barre de recherche
 				<div className="search-container">
 					<input
 						type="search"
@@ -91,9 +128,9 @@ const Header: React.FC = () => {
 						className="search-input"
 					/>
 					 <button className="search-button" type="button" aria-label="Rechercher">
-						🔍
+						 🔍
 					</button>
-				</div>
+				</div> */}
 
 				{/* Navigation principale (desktop) */}
 				<nav className="main-nav">

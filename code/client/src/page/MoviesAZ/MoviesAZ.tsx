@@ -206,6 +206,7 @@ const MoviesAZ: React.FC = () => {
 								</div>
 							)}
 						</div>
+						<div className="popup-details">
 						<p>
 							<strong>Date de sortie :</strong>{" "}
 							{new Date(selectedMovie.release_date).toLocaleDateString()}
@@ -228,6 +229,7 @@ const MoviesAZ: React.FC = () => {
 								<strong>Résumé :</strong> {selectedMovie.summary}
 							</p>
 						)}
+						</div>
 					</div>
 				</div>
 			)}

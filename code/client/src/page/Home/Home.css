@@ -18,63 +18,163 @@
   padding-right: 5px;
 }
 
+/* Section des films */
+.movies-row {
+  display: flex; /* Utilisation de Flexbox pour aligner les éléments horizontalement */
+  gap: 1rem; /* Espacement entre les cartes */
+  overflow-x: auto; /* Permet le défilement horizontal */
+  padding: 10px;
+  scroll-behavior: smooth; /* Défilement fluide */
+  scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+  -ms-overflow-style: none; /* Masque la barre de défilement pour Internet Explorer */
+}
+
+.movies-row::-webkit-scrollbar {
+  display: none; /* Masque la barre de défilement pour les navigateurs basés sur WebKit */
+}
+
+.movie-card {
+  flex: 0 0 150px; /* Largeur fixe des cartes */
+  text-align: center;
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%; /* S'adapte à la largeur de la carte */
+  border-radius: 8px;
+}
+
+/* Pour les petits écrans */
+@media (max-width: 768px) {
+  .movie-card {
+    flex: 0 0 120px; /* Réduit la largeur des cartes */
+  }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 580px) {
+  .movies-row,
+  .home-preview,
+  h3 {
+    padding-left: 20px; /* Décale les films vers la droite */
+    padding-right: 10px; /* Ajuste l'espacement à droite */
+  }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 550px) {
+    .movies-row,
+    .home-preview,
+    h3 {
+      padding-left: 40px; /* Décale les films vers la droite */
+      padding-right: 10px; /* Ajuste l'espacement à droite */
+    }
+  }
+
 .home-page {
-    text-align: center;
-    padding: 20px;
-    display: flex; /* Ajout de Flexbox */
-    flex-direction: column; /* Aligne les éléments verticalement */
-    justify-content: center; /* Centre verticalement */
-    align-items: center; /* Centre horizontalement */
-    min-height: 100vh; /* Assure que la hauteur couvre tout l'écran */
+  text-align: center;
+  padding: 20px;
+  display: flex; /* Ajout de Flexbox */
+  flex-direction: column; /* Aligne les éléments verticalement */
+  align-items: center; /* Centre horizontalement */
+  min-height: 100vh; /* Assure que la hauteur couvre tout l'écran */
+}
+
+.home-header {
+  margin-top: 20px; /* Réduit l'espacement au-dessus */
+  text-align: center;
+  padding: 10px;
 }
 
 .home-header h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-top: 150px;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px; /* Réduit l'espacement sous le titre */
 }
 
 .home-header p {
-    font-size: 1.2rem;
-    color: #666;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0; /* Supprime les marges supplémentaires */
 }
 
 .home-actions {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .home-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .home-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .home-preview {
-    margin-top: 30px;
-    text-align: left;
+  margin-top: 30px;
+  text-align: left;
 }
 
 .home-preview h2 {
-    font-size: 1.5rem;
-    color: #333;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .home-preview ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .home-preview li {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #555;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.genre-section {
+  margin-bottom: 2rem;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: #000; /* Fond noir */
+  color: #fff; /* Texte blanc pour contraste */
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.popup-content img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }

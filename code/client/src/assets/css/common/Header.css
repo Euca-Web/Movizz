@@ -157,31 +157,50 @@
 
 /* Menu déroulant */
 .dropdown-menu {
-  display: none; /* Masqué par défaut */
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
+  display: none; /* Masque le menu par défaut */
+  position: absolute; /* Position relative au parent */
+  top: 100%; /* Place le menu juste en dessous du header */
   left: 0;
-  width: 100%;
-  background-color: rgba(10, 12, 23, 0.9);
-  padding: 1rem;
-  z-index: 200;
+  width: 100%; /* Prend toute la largeur */
+  background-color: rgb(0, 0, 0); /* Couleur de fond */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
+  z-index: 1000; /* Assure que le menu est au-dessus des autres éléments */
+  padding: 20px; /* Espacement interne */
+  border-radius: 8px; /* Coins arrondis */
 }
 
-.dropdown-menu.active {
-  display: flex;
+.dropdown-menu.open {
+  display: block; /* Affiche le menu quand il est ouvert */
 }
 
 .dropdown-menu a {
-  color: white;
+  color: rgb(255, 255, 255); /* Couleur des liens */
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 10px 0;
+  display: block; /* Chaque lien sur une nouvelle ligne */
+  text-align: center;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .dropdown-menu a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.1); /* Fond au survol */
+}
+
+/* Overlay pour le menu */
+.menu-overlay {
+  display: none; /* Masqué par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  z-index: 999; /* Juste en dessous du menu */
+}
+
+.menu-overlay.open {
+  display: block; /* Affiche l'overlay quand le menu est ouvert */
 }
 
 /* Responsive pour tablettes */
@@ -197,18 +216,19 @@
   .header-right {
     flex: 1;
     justify-content: flex-end;
-    
   }
 
   .search-container {
     display: none; /* Masquer la barre de recherche */
   }
-  nav.main-nav{
+
+  nav.main-nav {
     margin-left: 20%;
   }
 }
+
 /* Responsive pour téléphones */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .header {
     flex-direction: row;
     justify-content: space-between;
@@ -225,13 +245,15 @@
     justify-content: flex-end;
   }
 
-  nav.main-nav{
+  nav.main-nav {
     margin-left: 25%;
   }
+
   .nav-link {
     font-size: 0.9rem;
     margin: 0 0.5rem; /* Réduire l'espacement entre les liens */
   }
+
   .logo {
     margin: 0 auto; /* Centrer le logo */
   }
