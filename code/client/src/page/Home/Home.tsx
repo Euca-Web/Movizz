@@ -1,6 +1,5 @@
 import type React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import noImageFound from "../../assets/img/NoImageFound.png"; // Image de remplacement
 
@@ -12,7 +11,6 @@ interface Movie {
 }
 
 const Home: React.FC = () => {
-	const navigate = useNavigate();
 	const [moviesByGenre, setMoviesByGenre] = useState<Record<string, Movie[]>>(
 		{},
 	);
