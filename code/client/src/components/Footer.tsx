@@ -16,6 +16,9 @@ const Footer: React.FC = () => {
 				/>
 					
 				</div>
+                <div className="PlanDuSite"> 
+                    <Link to="/plan-du-site">Plan du site</Link>
+                </div>
 				<div className="footer-links">
 					<Link to="/mentions-legales">Mentions Légales</Link>
 

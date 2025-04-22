@@ -15,8 +15,10 @@ import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import LogoutPage from "../page/LogoutPage";
 import SimpleLayout from "../layout/SimpleLayout";
+import SimpleLayout2 from "../layout/SimpleLayout2";
 import BaseLayout from "../layout/BaseLayout";
 import Home from "../page/Home/Home";
+import Plan from "../components/Plan";
 
 const router = createBrowserRouter([
 	{
@@ -76,16 +78,20 @@ const router = createBrowserRouter([
 		element: <SimpleLayout />,
 		children: [
 			{
-				path: "/mentions-legales",
+				path: "mentions-legales",
 				element: <LegalNotice />,
 			},
 			{
-				path: "/conditions-utilisation",
+				path: "conditions-utilisation",
 				element: <TermsOfUse />,
 			},
 			{
-				path: "/contact",
+				path: "contact",
 				element: <Contact />,
+			},
+			{
+				path: "plan-du-site",
+				element: <Plan />,
 			},
 		],
 	},
@@ -95,7 +101,7 @@ const router = createBrowserRouter([
 		// Utilisation d'une mise en page
 		element: (
 			<Guard roles_id={[2]}>
-				<SimpleLayout />
+				<SimpleLayout2 />
 			</Guard>
 		),
 		// Référencer les pages utilisant la mise en page

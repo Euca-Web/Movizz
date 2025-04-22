@@ -37,6 +37,25 @@
   flex: 0 0 150px; /* Largeur fixe des cartes */
   text-align: center;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-title-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.movie-card:hover .movie-title-overlay {
+  opacity: 1;
 }
 
 .movie-card img {
@@ -63,13 +82,13 @@
 
 /* Pour les très petits écrans */
 @media (max-width: 550px) {
-    .movies-row,
-    .home-preview,
-    h3 {
-      padding-left: 40px; /* Décale les films vers la droite */
-      padding-right: 10px; /* Ajuste l'espacement à droite */
-    }
+  .movies-row,
+  .home-preview,
+  h3 {
+    padding-left: 40px; /* Décale les films vers la droite */
+    padding-right: 10px; /* Ajuste l'espacement à droite */
   }
+}
 
 .home-page {
   text-align: center;
@@ -140,41 +159,4 @@
 
 .genre-section {
   margin-bottom: 2rem;
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: #000; /* Fond noir */
-  color: #fff; /* Texte blanc pour contraste */
-  padding: 2rem;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-}
-
-.popup-content img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
 }

@@ -16,11 +16,8 @@ const Home: React.FC = () => {
 	const [moviesByGenre, setMoviesByGenre] = useState<Record<string, Movie[]>>(
 		{},
 	);
-	const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null); // État pour le pop-up
 	const [loading, setLoading] = useState<boolean>(true); // Indicateur de chargement
 	const [error, setError] = useState<string | null>(null); // Gestion des erreurs
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false); // Simule l'état de connexion
-	const [showAuthPopup, setShowAuthPopup] = useState<boolean>(false); // État pour afficher le pop-up d'authentification
 
 	useEffect(() => {
 		const fetchMovies = async () => {
@@ -81,20 +78,6 @@ const Home: React.FC = () => {
 		fetchMovies();
 	}, []);
 
-	// Fonction pour ouvrir le pop-up
-	const openPopup = (movie: Movie) => {
-		if (!isAuthenticated) {
-			setShowAuthPopup(true); // Affiche le pop-up d'authentification
-			return;
-		}
-		setSelectedMovie(movie); // Affiche le pop-up du film si l'utilisateur est connecté
-	};
-
-	// Fonction pour fermer le pop-up
-	const closePopup = () => {
-		setSelectedMovie(null);
-	};
-
 	if (loading) {
 		return <div className="loading">Chargement des films...</div>;
 	}
@@ -111,6 +94,7 @@ const Home: React.FC = () => {
 			>
 				<h1>Bienvenue sur MOVIZZ</h1>
 				<p>Explorez une vaste collection de films et découvrez vos favoris.</p>
+				<p>Créez votre compte afin d'accéder aux pages des films ! </p>
 			</header>
 			<section className="home-preview">
 				{Object.entries(moviesByGenre).map(([genre, movies]) => (
@@ -118,11 +102,7 @@ const Home: React.FC = () => {
 						<h3>{genre}</h3>
 						<div className="movies-row">
 							{movies.map((movie) => (
-								<div
-									key={movie.movie_id}
-									className="movie-card"
-									onClick={() => openPopup(movie)}
-								>
+								<div key={movie.movie_id} className="movie-card">
 									<img
 										src={`${import.meta.env.VITE_API_URL}/img/${movie.poster_url}`}
 										alt={movie.title}
@@ -131,68 +111,15 @@ const Home: React.FC = () => {
 											target.src = noImageFound; // Image de remplacement
 										}}
 									/>
-									<p>{movie.title}</p>
+									<div className="movie-title-overlay">
+										<p>{movie.title}</p>
+									</div>
 								</div>
 							))}
 						</div>
 					</div>
 				))}
 			</section>
-
-			{/* Pop-up pour afficher les détails du film */}
-			{selectedMovie && (
-				<div className="popup-overlay" onClick={closePopup}>
-					<div className="popup-content" onClick={(e) => e.stopPropagation()}>
-						<button className="close-button" onClick={closePopup}>
-							&times;
-						</button>
-						<h2>{selectedMovie.title}</h2>
-						<img
-							src={`${import.meta.env.VITE_API_URL}/img/${selectedMovie.poster_url}`}
-							alt={selectedMovie.title}
-							className="popup-poster"
-						/>
-						<p>
-							<strong>Genres :</strong>{" "}
-							{selectedMovie.genders
-								.map((gender) => gender.gender_name)
-								.join(", ")}
-						</p>
-					</div>
-				</div>
-			)}
-
-			{/* Pop-up d'authentification */}
-			{showAuthPopup && (
-				<div className="popup-overlay" onClick={() => setShowAuthPopup(false)}>
-					<div className="popup-content" onClick={(e) => e.stopPropagation()}>
-						<button
-							className="close-button"
-							onClick={() => setShowAuthPopup(false)}
-						>
-							&times;
-						</button>
-						<h2>Connectez-vous ou inscrivez-vous</h2>
-						<p>Vous devez être connecté pour accéder à la fiche du film.</p>
-						<div className="auth-actions">
-							<button
-								type="button"
-								className="auth-button"
-								onClick={() => navigate("/login")}
-							>
-								Se connecter
-							</button>
-							<button
-								type="button"
-								className="auth-button"
-								onClick={() => navigate("/register")}
-							>
-								S'inscrire
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };

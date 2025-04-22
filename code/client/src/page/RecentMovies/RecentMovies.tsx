@@ -53,7 +53,7 @@ const RecentMovies: React.FC = () => {
 
 	return (
 		<div className="recent-movies">
-			<h1>Derniers films ajoutés</h1>
+			<h1>Dernières Sorties</h1>
 
 			<div className="content-grid-recent">
 				{movies.map((movie) => (

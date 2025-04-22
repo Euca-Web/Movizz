@@ -191,44 +191,46 @@ const MoviesAZ: React.FC = () => {
 								alt={selectedMovie.title}
 								className="popup-poster"
 							/>
-							{selectedMovie.trailer_url && (
-								<div className="popup-trailer">
-									<strong>Bande-annonce :</strong>
-									<iframe
-										width="100%"
-										height="315"
-										src={selectedMovie.trailer_url}
-										title={`Bande-annonce de ${selectedMovie.title}`}
-										frameBorder="0"
-										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-										allowFullScreen
-									/>
+							<div className="popup-right">
+								{selectedMovie.trailer_url && (
+									<div className="popup-trailer">
+										<strong>Bande-annonce :</strong>
+										<iframe
+											width="100%"
+											height="315"
+											src={selectedMovie.trailer_url}
+											title={`Bande-annonce de ${selectedMovie.title}`}
+											frameBorder="0"
+											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+											allowFullScreen
+										/>
+									</div>
+								)}
+								<div className="popup-details">
+									<p>
+										<strong>Date de sortie :</strong>{" "}
+										{new Date(selectedMovie.release_date).toLocaleDateString()}
+									</p>
+									<p>
+										<strong>Durée :</strong> {formatDuration(selectedMovie.duration)}
+									</p>
+									{selectedMovie.director && (
+										<p>
+											<strong>Réalisateur :</strong> {selectedMovie.director}
+										</p>
+									)}
+									{selectedMovie.genres && selectedMovie.genres.length > 0 && (
+										<p>
+											<strong>Genres :</strong> {selectedMovie.genres.join(", ")}
+										</p>
+									)}
+									{selectedMovie.summary && (
+										<p>
+											<strong>Résumé :</strong> {selectedMovie.summary}
+										</p>
+									)}
 								</div>
-							)}
-						</div>
-						<div className="popup-details">
-						<p>
-							<strong>Date de sortie :</strong>{" "}
-							{new Date(selectedMovie.release_date).toLocaleDateString()}
-						</p>
-						<p>
-							<strong>Durée :</strong> {formatDuration(selectedMovie.duration)}
-						</p>
-						{selectedMovie.director && (
-							<p>
-								<strong>Réalisateur :</strong> {selectedMovie.director}
-							</p>
-						)}
-						{selectedMovie.genres && selectedMovie.genres.length > 0 && (
-							<p>
-								<strong>Genres :</strong> {selectedMovie.genres.join(", ")}
-							</p>
-						)}
-						{selectedMovie.summary && (
-							<p>
-								<strong>Résumé :</strong> {selectedMovie.summary}
-							</p>
-						)}
+							</div>
 						</div>
 					</div>
 				</div>
